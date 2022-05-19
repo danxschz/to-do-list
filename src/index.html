@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/92d46d99be.js" crossorigin="anonymous"></script>
+  <title>To x Do</title>
+</head>
+
+<body>
+  <div class="sidebar">
+    <div class="logo"><a href="">To x Do</a></div>
+    <ul>
+      <li><i class="fa-solid fa-house-user"></i>Home</li>
+      <li><i class="fa-solid fa-calendar-day"></i>Today</li>
+      <li><i class="fa-solid fa-calendar-week"></i>This week</li>
+      <li><i class="fa-solid fa-folder"></i>Projects</li>
+    </ul>
+    <a href="https://github.com/danxschz" target="_blank"><i class="fa-brands fa-github"></i></a>
+  </div>
+
+  <main>
+    <h1>Home</h1>
+    
+    <div class="list"></div>
+
+    <div class="form">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title">
+
+      <label for="date">Date</label>
+      <input type="date" name="date" id="date">
+
+      <label for="priority">Priority</label>
+      <select name="priority" id="priority">
+        <option value="normal" selected="selected">Normal</option>
+        <option value="important">Important</option>
+      </select>
+
+      <button>Submit</button>
+    </div>
+  </main>
+</body>
+
+</html>
