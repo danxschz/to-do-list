@@ -1,11 +1,12 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;400;600;700;800&display=swap');
 
 
 // Variables
 $primary-color: #f7f8fa;
 $accent-color: #643fdb;
 $text-color: #01002d;
+$important-color: #ff8a00;
 $system-font-stack: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
 
 
@@ -44,7 +45,7 @@ body {
   display: grid;
   padding: 4vh 2vw;
   grid-template-rows: auto 1fr auto;
-  gap: 10vh;
+  gap: 9vh;
 
   ul {
     display: grid;
@@ -72,7 +73,7 @@ body {
   gap: 16px;
   align-items: center;
   border-radius: 4px;
-  padding: 16px 3vw;
+  padding: 16px 5vw 16px 1.5vw;
   cursor: pointer;
 
   &:hover {
@@ -81,6 +82,7 @@ body {
 
   i {
     justify-self: center;
+    opacity: 0.4;
   }
 }
 
@@ -105,22 +107,22 @@ main {
   background: $primary-color;
   padding: 4vh 6vw;
   align-content: start;
-  gap: 10vh;
+  gap: 9vh;
 }
 
 h1 {
   justify-self: center;
   color: $accent-color;
+  cursor: default;
 }
 
 .list {
   display: grid;
   align-content: start;
-  gap: 16px;
+  gap: 10px;
 }
 
 .to-do {
-
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 6px;
@@ -128,19 +130,32 @@ h1 {
 }
 
 .to-do__checkbox, .to-do__information {
+  display: grid;
   border-radius: 4px;
   padding: 16px;
   background: white;
 }
 
-.round input {
+.to-do__checkbox input {
   width: 25px;
   height: 25px;
   accent-color: $accent-color;
   cursor: pointer;
+
 }
 
 .to-do__information {
   display: grid;
   align-items: center;
+  font-weight: 600;
+
+
+}
+
+.important {
+  color: $important-color;
+}
+
+.complete {
+  opacity: 0.6;
 }
