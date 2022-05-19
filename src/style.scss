@@ -1,0 +1,146 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;400;700;800&display=swap');
+
+
+// Variables
+$primary-color: #f7f8fa;
+$accent-color: #643fdb;
+$text-color: #01002d;
+$system-font-stack: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+
+
+// General rules
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Mulish', $system-font-stack;
+  color: $text-color;
+}
+
+h1, ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+
+// Main grid
+body {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  min-height: 100vh;
+}
+
+
+// Sidebar
+.sidebar {
+  display: grid;
+  padding: 4vh 2vw;
+  grid-template-rows: auto 1fr auto;
+  gap: 10vh;
+
+  ul {
+    display: grid;
+    align-content: start;
+    font-size: 1.1rem;
+  }
+
+  a {
+    color: $accent-color;
+    text-decoration: none;
+  }
+}
+
+.logo {
+  font-size: 2rem;
+  color: $accent-color;
+  font-weight: 700;
+  justify-self: center;
+}
+
+.sidebar li {
+  display: grid;
+  grid-template-columns: 20px auto;
+  justify-content: start;
+  gap: 16px;
+  align-items: center;
+  border-radius: 4px;
+  padding: 16px 3vw;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(100, 63, 219, 0.2);
+  }
+
+  i {
+    justify-self: center;
+  }
+}
+
+.sidebar > a {
+  align-self: end;
+  justify-self: center;
+}
+
+.fa-github {
+  font-size: 2.2rem;
+  transition: transform 0.3s ease-in-out;
+}
+  
+.fa-github:hover {
+  transform: rotate(360deg) scale(1.2);
+}
+
+
+// Main
+main {
+  display: grid;
+  background: $primary-color;
+  padding: 4vh 6vw;
+  align-content: start;
+  gap: 10vh;
+}
+
+h1 {
+  justify-self: center;
+  color: $accent-color;
+}
+
+.list {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+}
+
+.to-do {
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px;
+  font-size: 1.1rem;
+}
+
+.to-do__checkbox, .to-do__information {
+  border-radius: 4px;
+  padding: 16px;
+  background: white;
+}
+
+.round input {
+  width: 25px;
+  height: 25px;
+  accent-color: $accent-color;
+  cursor: pointer;
+}
+
+.to-do__information {
+  display: grid;
+  align-items: center;
+}

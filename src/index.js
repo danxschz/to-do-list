@@ -1,3 +1,6 @@
+import './normalize.css';
+import './style.scss';
+
 const toDo = (title, dueDate = null, priority = null, complete = false) => {
   return {title, dueDate, priority, complete};
 }
@@ -31,10 +34,35 @@ homeList.appendToDo(test3);
 
 const displayList = (list) => {
   let listContainer = document.querySelector('.list');
-  for (item of list.content) {
+  for (let item of list.content) {
+    let toDo = document.createElement('div');
+    toDo.classList.add('to-do');
+
+    let checkboxContainer = document.createElement('div');
+    checkboxContainer.classList.add('to-do__checkbox');
+
+    let round = document.createElement('div');
+    round.classList.add('round');
+
+    let checkbox = document.createElement('input');
+    checkbox.setAttribute('type', 'checkbox');
+    round.appendChild(checkbox);
+    
+    checkboxContainer.appendChild(round);
+
+    toDo.appendChild(checkboxContainer);
+
+    let informationContainer = document.createElement('div');
+    informationContainer.classList.add('to-do__information');
+
     let title = document.createElement('div');
+    title.classList.add('to-do__title');
     title.textContent = item.title;
-    listContainer.appendChild(title);
+    informationContainer.appendChild(title);
+
+    toDo.appendChild(informationContainer);
+
+    listContainer.appendChild(toDo);
   }
 }
 
