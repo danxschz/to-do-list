@@ -148,7 +148,13 @@ h1 {
   display: grid;
   align-items: center;
   font-weight: 600;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
 
+  i {
+    cursor: pointer;
+    color: $accent-color;
+  }
 
 }
 

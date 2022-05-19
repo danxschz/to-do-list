@@ -20,7 +20,11 @@ const list = (name) => {
     content.push(toDo);
   }
 
-  return {name, content, changeCompleteStatus, appendToDo};
+  const removeToDo = (index) => {
+    content.splice(index, 1);
+  }
+
+  return {name, content, changeCompleteStatus, appendToDo, removeToDo};
 }
 
 // Default list
@@ -65,6 +69,14 @@ const displayList = (list) => {
     title.textContent = item.title;
     informationContainer.appendChild(title);
 
+    let icons = document.createElement('div');
+    let deleteIcon = document.createElement('i');
+    deleteIcon.setAttribute('class', 'fa-solid fa-trash');
+    icons.appendChild(deleteIcon);
+
+    informationContainer.appendChild(icons);
+
+
     toDo.appendChild(informationContainer);
 
     listContainer.appendChild(toDo);
@@ -98,6 +110,8 @@ submitButton.addEventListener('click', () => {
   console.log(homeList.content);
 });
 
+
+// Set event listeners
 let listItems = document.querySelectorAll('.to-do');
 listItems.forEach(item => {
   let i = item.getAttribute('data-index');
@@ -106,5 +120,12 @@ listItems.forEach(item => {
   checkbox.addEventListener('click', () => {
     homeList.changeCompleteStatus(i);
     console.log(homeList.content);
+  });
+
+  let deleteIcon = item.querySelector('.fa-trash');
+  deleteIcon.addEventListener('click', () => {
+    homeList.removeToDo(i);
+    clearDisplay();
+    displayList(homeList);
   });
 });
