@@ -148,12 +148,13 @@ h1 {
   display: grid;
   align-items: center;
   font-weight: 600;
-  grid-template-columns: auto auto;
-  justify-content: space-between;
+  grid-template-columns: auto 1fr auto;
+  gap: 6vw;
 
   i {
     cursor: pointer;
     color: $accent-color;
+    font-size: 1.3rem;
   }
 
 }
@@ -164,4 +165,14 @@ h1 {
 
 .complete {
   opacity: 0.6;
+}
+
+.icons {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 2vw;
+}
+
+.to-do__date {
+  justify-self: end;
 }
