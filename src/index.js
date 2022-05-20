@@ -52,14 +52,16 @@ const domManipulation = (() => {
 
       let date = document.createElement('div');
       date.classList.add('to-do__date');
-      date.textContent = moment(item.dueDate).calendar({
-        sameDay: '[Today]',
-        nextDay: '[Tomorrow]',
-        nextWeek: 'dddd',
-        lastDay: '[Yesterday]',
-        lastWeek: '[Last] dddd',
-        sameElse: 'DD/MM/YYYY'
-      });
+      if (!(item.dueDate === '')) {
+        date.textContent = moment(item.dueDate).calendar({
+          sameDay: '[Today]',
+          nextDay: '[Tomorrow]',
+          nextWeek: 'dddd',
+          lastDay: '[Yesterday]',
+          lastWeek: '[Last] dddd',
+          sameElse: 'DD/MM/YYYY'
+        });
+      }
       contentDiv.appendChild(date);
 
       let icons = document.createElement('div');
