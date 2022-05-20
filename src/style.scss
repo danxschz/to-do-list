@@ -165,6 +165,10 @@ h1 {
     cursor: pointer;
     color: $accent-color;
     font-size: 1.2rem;
+
+    &:hover {
+      opacity: 0.9;
+    }
   }
 }
 
@@ -179,14 +183,15 @@ h1 {
 }
 
 .important {
-  color: $important-color;
-  
+  background: $accent-color;
+  color: white;
+
   i {
-    color: $important-color;
+    color: white;
   }
 
   input[type="checkbox"] {
-    accent-color: $important-color;
+    accent-color: white;
   }
 }
 
@@ -219,6 +224,14 @@ h1 {
 
   i {
     font-size: 2rem;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    opacity: 0.8;
   }
 }
 

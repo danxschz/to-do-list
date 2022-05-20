@@ -72,6 +72,7 @@ const domManipulation = (() => {
 
       let deleteIcon = document.createElement('i');
       deleteIcon.setAttribute('class', 'fa-solid fa-trash');
+      deleteIcon.setAttribute('title', 'Delete to do');
       icons.appendChild(deleteIcon);
 
       contentDiv.appendChild(icons);
