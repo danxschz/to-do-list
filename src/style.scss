@@ -108,10 +108,10 @@ body {
 // Main
 main {
   display: grid;
-  background: $primary-color;
-  padding: 4vh 6vw;
   align-content: start;
   gap: 9vh;
+  padding: 4vh 6vw;
+  background: $primary-color;
 }
 
 h1 {
@@ -124,6 +124,9 @@ h1 {
   display: grid;
   gap: 10px;
 }
+
+
+// List
 .list {
   display: grid;
   align-content: start;
@@ -137,10 +140,10 @@ h1 {
   font-size: 1.1rem;
 }
 
-.to-do__checkbox, .to-do__information {
+.to-do__checkbox, .to-do__content {
   display: grid;
-  border-radius: 4px;
   padding: 16px;
+  border-radius: 4px;
   background: white;
 }
 
@@ -149,27 +152,35 @@ h1 {
   height: 25px;
   accent-color: $accent-color;
   cursor: pointer;
-
 }
 
-.to-do__information {
+.to-do__content {
   display: grid;
-  align-items: center;
-  font-weight: 600;
   grid-template-columns: auto 1fr auto;
+  align-items: center;
   gap: 2vw;
+  font-weight: 600;
 
   i {
     cursor: pointer;
     color: $accent-color;
     font-size: 1.2rem;
   }
+}
 
+.to-do__date {
+  justify-self: end;
+}
+
+.icons {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1.5vw;
 }
 
 .important {
   color: $important-color;
-
+  
   i {
     color: $important-color;
   }
@@ -183,62 +194,46 @@ h1 {
   opacity: 0.6;
 }
 
-.icons {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  gap: 1.5vw;
-}
 
-.to-do__date {
-  justify-self: end;
-}
-
+// To do form
 .to-do-form {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 6px;
+
+  label {
+    display: none;
+  }
 }
 
 .to-do-form__button {
-  border-radius: 4px;
-  width: 57px;
-  height: 57px;
-  background: $accent-color;
-  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 57px;
+  height: 57px;
   border: none;
+  border-radius: 4px;
+  background: $accent-color;
+  color: white;
 
   i {
     font-size: 2rem;
   }
 }
 
-label {
-  display: none;
-}
-
 .to-do-form__inputs {
   display: grid;
   grid-template-columns: 1fr auto;
-  background: white;
+  gap: 0.5vw;
   border-radius: 4px;
+  background: white;
   font-size: 1.1rem;
-  gap: 1vw;
 
-  #title {
+  #description, #due-date {
     height: 100%;
-    border: none;
     padding: 16px;
-    font-weight: 600;
-    outline-color: $accent-color;
-  }
-
-  #date {
-    height: 100%;
     border: none;
-    padding: 16px;
     font-weight: 600;
     outline-color: $accent-color;
   }
