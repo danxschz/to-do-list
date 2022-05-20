@@ -156,7 +156,7 @@ h1 {
 
 .to-do__content {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr auto auto;
   align-items: center;
   gap: 2vw;
   font-weight: 600;
@@ -170,6 +170,11 @@ h1 {
       opacity: 0.9;
     }
   }
+}
+
+.to-do__description {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .to-do__date {
@@ -249,5 +254,6 @@ h1 {
     border: none;
     font-weight: 600;
     outline-color: $accent-color;
+    cursor: pointer;
   }
 }
