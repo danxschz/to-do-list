@@ -1,48 +1,22 @@
 import './normalize.css';
 import './style.scss';
 import moment from 'moment';
+import Project from './project.js';
 
 const ToDo = (description, dueDate, priority = 'normal', complete = false) => {
   return {description, dueDate, priority, complete};
 }
 
-const Project = (name) => {
-  const list = [];
-
-  const appendToDo = (toDo) => {
-    list.push(toDo);
-  }
-
-  const removeToDo = (i) => {
-    list.splice(i, 1);
-  }
-
-  const changeCompleteStatus = (i) => {
-    if (list[i].complete === true) {
-      list[i].complete = false;
-    } else {
-      list[i].complete = true;
-    }
-  }
-
-  const changePriority = (i) => {
-    if (list[i].priority === 'normal') {
-      list[i].priority = 'important';
-    } else {
-      list[i].priority = 'normal';
-    }
-  }
-
-  return {name, list, appendToDo, removeToDo, changeCompleteStatus, changePriority};
-}
-
 const displayList = (project) => {
+  let heading = document.querySelector('main h1');
+  heading.textContent = project.name;
+
   let list = document.querySelector('.list');
   let i = 0;
   for (let item of project.list) {
     let toDo = document.createElement('div');
     toDo.classList.add('to-do');
-    toDo.setAttribute('data-index', i++); // Keep an eye for this change
+    toDo.setAttribute('data-index', i++);
 
     let checkboxDiv = document.createElement('div');
     checkboxDiv.classList.add('to-do__checkbox');
@@ -153,7 +127,7 @@ const setToDoEvents = (project) => {
 }
 
 // Default project
-const home = Project('home');
+const home = Project('Home');
 let test1 = ToDo('Walk the dog', '2022-05-16', 'normal');
 let test2 = ToDo('Save the world', '2022-05-21', 'important');
 let test3 = ToDo('Work out', '2022-05-20', 'normal');
