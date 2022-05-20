@@ -102,6 +102,7 @@ const displayList = (list) => {
 
     let priorityIcon = document.createElement('i');
     priorityIcon.setAttribute('class', 'fa-solid fa-triangle-exclamation');
+    priorityIcon.setAttribute('title', 'Change priority');
     icons.appendChild(priorityIcon);
 
     let deleteIcon = document.createElement('i');

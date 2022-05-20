@@ -1,19 +1,19 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap');
 
 
 // Variables
 $primary-color: #f7f8fa;
 $accent-color: #643fdb;
 $text-color: #01002d;
-$important-color: rgb(255, 43, 0); //rgb(170, 63, 153) #ff8a00
+$important-color: #ff2b00; 
 $system-font-stack: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
 
 
 // General rules
 *,
-*::after,
-*::before {
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -47,8 +47,8 @@ body {
 // Sidebar
 .sidebar {
   display: grid;
-  padding: 4vh 2vw;
   grid-template-rows: auto 1fr auto;
+  padding: 4vh 2vw;
   gap: 9vh;
 
   ul {
@@ -64,18 +64,18 @@ body {
 }
 
 .logo {
-  font-size: 2rem;
-  color: $accent-color;
-  font-weight: 700;
   justify-self: center;
+  color: $accent-color;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 .sidebar li {
   display: grid;
   grid-template-columns: 20px auto;
   justify-content: start;
-  gap: 16px;
   align-items: center;
+  gap: 16px;
   border-radius: 4px;
   padding: 16px 5vw 16px 1.5vw;
   cursor: pointer;
@@ -227,15 +227,12 @@ label {
   font-size: 1.1rem;
   gap: 1vw;
 
-
-
   #title {
     height: 100%;
     border: none;
     padding: 16px;
     font-weight: 600;
     outline-color: $accent-color;
-
   }
 
   #date {
@@ -244,7 +241,5 @@ label {
     padding: 16px;
     font-weight: 600;
     outline-color: $accent-color;
-
   }
-
 }
