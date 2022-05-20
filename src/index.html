@@ -23,23 +23,18 @@
 
   <main>
     <h1>Home</h1>
-    
-    <div class="list"></div>
+    <div class="content">
+      <div class="list"></div>
 
-    <div class="form">
-      <label for="title">Title</label>
-      <input type="text" name="title" id="title">
-
-      <label for="date">Date</label>
-      <input type="date" name="date" id="date">
-
-      <label for="priority">Priority</label>
-      <select name="priority" id="priority">
-        <option value="normal" selected="selected">Normal</option>
-        <option value="important">Important</option>
-      </select>
-
-      <button>Submit</button>
+      <div class="to-do-form">
+        <button class="to-do-form__button"><i class="fa-solid fa-plus"></i></button>
+        <div class="to-do-form__inputs">
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title">
+          <label for="date">Date</label>
+          <input type="date" name="date" id="date">
+        </div>
+      </div>
     </div>
   </main>
 </body>

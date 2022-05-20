@@ -2,7 +2,7 @@ import './normalize.css';
 import './style.scss';
 import moment from 'moment';
 
-const toDo = (title, dueDate = null, priority = null, complete = false) => {
+const toDo = (title, dueDate = null, priority = 'normal', complete = false) => {
   return {title, dueDate, priority, complete};
 }
 
@@ -40,7 +40,7 @@ const list = (name) => {
 const homeList = list('home');
 let test1 = toDo('Clean room', '2022-05-11', 'normal');
 let test2 = toDo('Learn react', '2022-05-19', 'important');
-let test3 = toDo('Work out', '2022-05-14', 'low');
+let test3 = toDo('Work out', '2022-05-14', 'normal');
 homeList.appendToDo(test1);
 homeList.appendToDo(test2);
 homeList.appendToDo(test3);
@@ -73,7 +73,10 @@ const displayList = (list) => {
     let title = document.createElement('div');
     title.classList.add('to-do__title');
 
-    if (item.priority === 'important') title.classList.add('important');
+    if (item.priority === 'important') {
+      checkboxContainer.classList.add('important');
+      informationContainer.classList.add('important');
+    }
 
     title.textContent = item.title;
     informationContainer.appendChild(title);
@@ -92,6 +95,10 @@ const displayList = (list) => {
 
     let icons = document.createElement('div');
     icons.classList.add('icons');
+
+    let dateIcon = document.createElement('i');
+    dateIcon.setAttribute('class', 'fa-solid fa-calendar');
+    icons.appendChild(dateIcon);
 
     let priorityIcon = document.createElement('i');
     priorityIcon.setAttribute('class', 'fa-solid fa-triangle-exclamation');
@@ -121,9 +128,8 @@ displayList(homeList);
 
 const buildToDo = () => {
   let title = document.querySelector('#title');
-  let dueDate = document.querySelector('#date');
-  let priority = document.querySelector('#priority');
-  return toDo(title.value, date.value, priority.value);
+  let date = document.querySelector('#date');
+  return toDo(title.value, date.value);
 }
 
 const submitButton = document.querySelector('button');
@@ -163,3 +169,6 @@ listItems.forEach(item => {
     displayList(homeList);
   });
 });
+
+let asd = document.querySelector('#date');
+console.log(asd.value);

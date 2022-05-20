@@ -6,7 +6,7 @@
 $primary-color: #f7f8fa;
 $accent-color: #643fdb;
 $text-color: #01002d;
-$important-color: #ff8a00;
+$important-color: rgb(255, 43, 0); //rgb(170, 63, 153) #ff8a00
 $system-font-stack: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
 
 
@@ -29,6 +29,10 @@ h1, ul {
 
 ul {
   list-style: none;
+}
+
+button {
+  cursor: pointer;
 }
 
 
@@ -116,6 +120,10 @@ h1 {
   cursor: default;
 }
 
+.content {
+  display: grid;
+  gap: 10px;
+}
 .list {
   display: grid;
   align-content: start;
@@ -149,18 +157,26 @@ h1 {
   align-items: center;
   font-weight: 600;
   grid-template-columns: auto 1fr auto;
-  gap: 6vw;
+  gap: 2vw;
 
   i {
     cursor: pointer;
     color: $accent-color;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 
 }
 
 .important {
   color: $important-color;
+
+  i {
+    color: $important-color;
+  }
+
+  input[type="checkbox"] {
+    accent-color: $important-color;
+  }
 }
 
 .complete {
@@ -169,10 +185,66 @@ h1 {
 
 .icons {
   display: grid;
-  grid-template-columns: auto auto;
-  gap: 2vw;
+  grid-template-columns: auto auto auto;
+  gap: 1.5vw;
 }
 
 .to-do__date {
   justify-self: end;
+}
+
+.to-do-form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px;
+}
+
+.to-do-form__button {
+  border-radius: 4px;
+  width: 57px;
+  height: 57px;
+  background: $accent-color;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+
+  i {
+    font-size: 2rem;
+  }
+}
+
+label {
+  display: none;
+}
+
+.to-do-form__inputs {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  background: white;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  gap: 1vw;
+
+
+
+  #title {
+    height: 100%;
+    border: none;
+    padding: 16px;
+    font-weight: 600;
+    outline-color: $accent-color;
+
+  }
+
+  #date {
+    height: 100%;
+    border: none;
+    padding: 16px;
+    font-weight: 600;
+    outline-color: $accent-color;
+
+  }
+
 }
