@@ -19,4 +19,48 @@ domManipulation.displayList(home);
 domManipulation.setAddToDo(home);
 domManipulation.setToDoEvents(home);
 
+// Multiple projects
+const testproject = Project('Test');
+const testproject2 = Project('Test2');
+let projects = [testproject, testproject2];
+
+const displayProjects = () => {
+  let dropdown = document.createElement('div');
+  dropdown.classList.add('dropdown');
+
+  for (let project of projects) {
+    let listItem = document.createElement('li');
+
+    let icon = document.createElement('i');
+    icon.setAttribute('class', 'fa-solid fa-folder');
+    listItem.appendChild(icon);
+
+    let projectName = document.createElement('div');
+    projectName.textContent = project.name;
+    listItem.appendChild(projectName);
+
+    dropdown.appendChild(listItem);
+  }
+
+  let sidebarList = document.querySelector('.sidebar ul');
+  sidebarList.appendChild(dropdown);
+}
+
+const toggleDropdown = () => {
+  let dropdownBtn = document.querySelector('.dropdown-btn');
+
+  dropdownBtn.addEventListener('click', () => {
+    dropdownBtn.classList.toggle('dropdown-btn_active');
+    let dropdownContent = document.querySelector('.dropdown');
+    if (dropdownContent.style.display === 'block') {
+      dropdownContent.style.display = 'none';
+    } else {
+      dropdownContent.style.display = 'block';
+    }
+  });
+}
+
+displayProjects();
+toggleDropdown();
+
 export default ToDo;
