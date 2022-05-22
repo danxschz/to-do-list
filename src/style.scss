@@ -164,6 +164,15 @@ ul i {
   }
 }
 
+.project {
+  padding-right: 0;
+  div {
+    max-width: 9vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
 #name {
   border-radius: 4px;
   background: white;

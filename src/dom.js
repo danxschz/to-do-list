@@ -135,7 +135,7 @@ const domManipulation = (() => {
     });
   }
 
-  return {displayList, clearDisplay, setAddToDo, setToDoEvents};
+  return {displayList, clearDisplay, setAddToDo, setToDoEvents, resetInputs};
 })();
 
 export default domManipulation;

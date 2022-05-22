@@ -106,6 +106,27 @@ const setHomeEvent = () => {
   });
 }
 
+const clearProjects = () => {
+  let projects = document.querySelectorAll('.project');
+  projects.forEach(project => {
+    project.remove();
+  })
+}
+
+let projectForm = document.querySelector('#name');
+let projectSubmit = document.querySelector('.sidebar__li .fa-plus');
+projectSubmit.addEventListener('click', () => {
+  let projectName = projectForm.value;
+  if (projectName.length > 30) {
+    projectName = projectName.slice(0, 30);
+  }
+  projects.push(Project(projectName));
+  domManipulation.resetInputs();
+  clearProjects();
+  displayProjects();
+  setProjectEvents();
+});
+
 
 displayProjects();
 toggleDropdown();
