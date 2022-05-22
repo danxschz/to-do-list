@@ -3,7 +3,7 @@ import ToDo from './index.js';
 import { populateStorage, storageAvailable } from './index.js';
 import Project from './project.js';
 
-const domManipulation = (() => {
+const listDOM = (() => {
   const createToDo = () => {
     let description = document.querySelector('#description');
     let date = document.querySelector('#due-date');
@@ -104,11 +104,6 @@ const domManipulation = (() => {
       clearDisplay();
       displayList(project);
       setToDoEvents(project);
-      
-      if (storageAvailable('localStorage')) {
-        // Yippee! We can use localStorage awesomeness
-        populateStorage();
-      }
     });
   }
 
@@ -146,4 +141,4 @@ const domManipulation = (() => {
   return {displayList, clearDisplay, setAddToDo, setToDoEvents, resetInputs};
 })();
 
-export default domManipulation;
+export default listDOM;

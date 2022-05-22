@@ -1,38 +1,22 @@
 import './normalize.css';
 import './style.scss';
 import Project from './project.js';
-import domManipulation from './dom.js';
+import listDOM from './list-dom.js';
+import localStorageManipulation from './local-storage';
 
 const ToDo = (description, dueDate, priority = 'normal', complete = false) => {
   return {description, dueDate, priority, complete};
 }
+
 let projects = [];
 
-if (storageAvailable('localStorage')) {
-  if (localStorage.length > 0) {
-    Object.keys(localStorage).forEach(key => {
-      if (key === 'Home') return; 
-      let retrievedProject = Project(key);
-      let retrievedProjectList = JSON.parse(localStorage.getItem(key));
-      for (let item of retrievedProjectList) {
-        retrievedProject.appendToDo(item);
-      }
-      projects.push(retrievedProject);
-    });
-  }
-}
-
+const home = Project('Home');
+localStorageManipulation.retrieve();
 
 // Default project
-const home = Project('Home');
-let test1 = ToDo('Refactor', '2022-05-16', 'normal');
-let test2 = ToDo('Save the world', '2022-05-21', 'important');
-let test3 = ToDo('New project', '2022-05-20', 'normal');
-let test4 = ToDo('local storage api');
-home.appendToDo(test4);
-domManipulation.displayList(home);
-domManipulation.setAddToDo(home);
-domManipulation.setToDoEvents(home);
+listDOM.displayList(home);
+listDOM.setAddToDo(home);
+listDOM.setToDoEvents(home);
 
 // Multiple projects
 const displayProjects = () => {
@@ -89,13 +73,13 @@ const setProjectEvents = () => {
     project.addEventListener('click', () => {
       removeActiveClass();
       project.classList.add('li_active');
-      domManipulation.clearDisplay();
-      domManipulation.displayList(projects[project.getAttribute('data-index')]);
+      listDOM.clearDisplay();
+      listDOM.displayList(projects[project.getAttribute('data-index')]);
       let addToDoButton = document.querySelector('.to-do-form__button');
       let addToDoButtonNew = addToDoButton.cloneNode(true);
       addToDoButton.parentNode.replaceChild(addToDoButtonNew, addToDoButton);
-      domManipulation.setAddToDo(projects[project.getAttribute('data-index')]);
-      domManipulation.setToDoEvents(projects[project.getAttribute('data-index')]);
+      listDOM.setAddToDo(projects[project.getAttribute('data-index')]);
+      listDOM.setToDoEvents(projects[project.getAttribute('data-index')]);
     });
   });
 }
@@ -105,13 +89,13 @@ const setHomeEvent = () => {
   homeLi.addEventListener('click', () => {
     removeActiveClass();
     homeLi.classList.add('li_active');
-    domManipulation.clearDisplay();
-    domManipulation.displayList(home);
+    listDOM.clearDisplay();
+    listDOM.displayList(home);
     let addToDoButton = document.querySelector('.to-do-form__button');
     let addToDoButtonNew = addToDoButton.cloneNode(true);
     addToDoButton.parentNode.replaceChild(addToDoButtonNew, addToDoButton);
-    domManipulation.setAddToDo(home);
-    domManipulation.setToDoEvents(home);
+    listDOM.setAddToDo(home);
+    listDOM.setToDoEvents(home);
   });
 }
 
@@ -130,7 +114,7 @@ projectSubmit.addEventListener('click', () => {
     projectName = projectName.slice(0, 30);
   }
   projects.push(Project(projectName));
-  domManipulation.resetInputs();
+  listDOM.resetInputs();
   clearProjects();
   displayProjects();
   setProjectEvents();
@@ -142,47 +126,5 @@ toggleDropdown();
 setHomeEvent();
 setProjectEvents();
 
-// Local storage stuff
-
-// detects whether localStorage is both supported and available: (from MDN)
-function storageAvailable(type) {
-  var storage;
-  try {
-      storage = window[type];
-      var x = '__storage_test__';
-      storage.setItem(x, x);
-      storage.removeItem(x);
-      return true;
-  }
-  catch(e) {
-      return e instanceof DOMException && (
-          // everything except Firefox
-          e.code === 22 ||
-          // Firefox
-          e.code === 1014 ||
-          // test name field too, because code might not be present
-          // everything except Firefox
-          e.name === 'QuotaExceededError' ||
-          // Firefox
-          e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-          // acknowledge QuotaExceededError only if there's something already stored
-          (storage && storage.length !== 0);
-  }
-}
-
-function populateStorage() {
-  localStorage.setItem(home.name, JSON.stringify(home.list));
-
-  for (let project of projects) {
-    localStorage.setItem(project.name, JSON.stringify(project.list));
-  }
-}
-
-/*
-if (storageAvailable('localStorage')) {
-  // Yippee! We can use localStorage awesomeness
-  populateStorage();
-}*/
-
 export default ToDo;
-export {populateStorage, storageAvailable}
+export {projects};
