@@ -1,5 +1,5 @@
 import Project from './project.js';
-import {projects} from './index.js';
+import {projects, home} from './index.js';
 
 const localStorageManipulation = (() => {
   // Detects whether localStorage is both supported and available (from MDN Web Docs)
@@ -44,6 +44,13 @@ const localStorageManipulation = (() => {
 
   const retrieve = () => {
     if (checkIfAvailable('localStorage') && localStorage.length > 0) {
+      // Retrieve home
+      let homeList = JSON.parse(localStorage.getItem('Home'));
+      for (let toDo of homeList) {
+        home.appendToDo(toDo);
+      }
+
+      // Retrieve projects
       Object.keys(localStorage).forEach(project => {
         if (project === 'Home') return; 
         let retrievedProject = Project(project);
@@ -56,7 +63,7 @@ const localStorageManipulation = (() => {
     }
   }
 
-  return {checkIfAvailable, populate, handlePopulation, retrieve};
+  return {handlePopulation, retrieve};
 })();
 
 export default localStorageManipulation;

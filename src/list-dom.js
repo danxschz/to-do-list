@@ -1,7 +1,7 @@
 import moment from 'moment';
 import ToDo from './index.js';
-import { populateStorage, storageAvailable } from './index.js';
 import Project from './project.js';
+import localStorageManipulation from './local-storage.js';
 
 const listDOM = (() => {
   const createToDo = () => {
@@ -104,6 +104,7 @@ const listDOM = (() => {
       clearDisplay();
       displayList(project);
       setToDoEvents(project);
+      localStorageManipulation.handlePopulation();
     });
   }
 

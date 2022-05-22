@@ -8,17 +8,18 @@ const ToDo = (description, dueDate, priority = 'normal', complete = false) => {
   return {description, dueDate, priority, complete};
 }
 
-let projects = [];
+const projects = [];
 
+// Home
 const home = Project('Home');
+
 localStorageManipulation.retrieve();
 
-// Default project
 listDOM.displayList(home);
 listDOM.setAddToDo(home);
 listDOM.setToDoEvents(home);
 
-// Multiple projects
+// Custom projects
 const displayProjects = () => {
   let dropdown = document.querySelector('.dropdown');
 
@@ -127,4 +128,4 @@ setHomeEvent();
 setProjectEvents();
 
 export default ToDo;
-export {projects};
+export {projects, home};
