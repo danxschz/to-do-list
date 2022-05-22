@@ -13,11 +13,20 @@
   <div class="sidebar">
     <div class="logo"><a href="">To x Do</a></div>
     <ul>
-      <li class="home"><i class="fa-solid fa-house-user"></i>Home</li>
+      <li class="sidebar__li home"><i class="fa-solid fa-house-user"></i>Home</li>
       <button class="dropdown-btn">
         <div class="dropdown-btn__left"><i class="fa-solid fa-folder-tree"></i>Projects</div>
         <i class="fa-solid fa-caret-down"></i>
       </button>
+      <div class="dropdown">
+        <li class="sidebar__li project-form">
+          <i class="fa-solid fa-plus"></i>
+          <div class="input-lol">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" placeholder="New project">
+          </div>
+        </li>
+      </div>
     </ul>
     <a href="https://github.com/danxschz" target="_blank"><i class="fa-brands fa-github"></i></a>
   </div>

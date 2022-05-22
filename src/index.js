@@ -9,12 +9,14 @@ const ToDo = (description, dueDate, priority = 'normal', complete = false) => {
 
 // Default project
 const home = Project('Home');
-let test1 = ToDo('Walk the dog', '2022-05-16', 'normal');
+let test1 = ToDo('Refactor', '2022-05-16', 'normal');
 let test2 = ToDo('Save the world', '2022-05-21', 'important');
-let test3 = ToDo('Work out', '2022-05-20', 'normal');
-home.appendToDo(test1);
+let test3 = ToDo('New project', '2022-05-20', 'normal');
+let test4 = ToDo('local storage api');
 home.appendToDo(test2);
+home.appendToDo(test1);
 home.appendToDo(test3);
+home.appendToDo(test4);
 domManipulation.displayList(home);
 domManipulation.setAddToDo(home);
 domManipulation.setToDoEvents(home);
@@ -25,12 +27,13 @@ const testproject2 = Project('Test 2');
 let projects = [testproject, testproject2];
 
 const displayProjects = () => {
-  let dropdown = document.createElement('div');
-  dropdown.classList.add('dropdown');
+  let dropdown = document.querySelector('.dropdown');
 
+  let form = document.querySelector('.project-form');
   let i = 0;
   for (let project of projects) {
     let listItem = document.createElement('li');
+    listItem.classList.add('sidebar__li');
     listItem.classList.add('project');
     listItem.setAttribute('data-index', i++);
 
@@ -42,7 +45,8 @@ const displayProjects = () => {
     projectName.textContent = project.name;
     listItem.appendChild(projectName);
 
-    dropdown.appendChild(listItem);
+    //dropdown.appendChild(listItem);
+    dropdown.insertBefore(listItem, form);
   }
 
   let sidebarList = document.querySelector('.sidebar ul');
