@@ -1,5 +1,7 @@
 import moment from 'moment';
 import ToDo from './index.js';
+import { populateStorage, storageAvailable } from './index.js';
+import Project from './project.js';
 
 const domManipulation = (() => {
   const createToDo = () => {
@@ -97,10 +99,16 @@ const domManipulation = (() => {
       let description = document.querySelector('#description');
       if (description.value === '') return;
       project.appendToDo(createToDo());
+      console.log(project.list);
       resetInputs();
       clearDisplay();
       displayList(project);
       setToDoEvents(project);
+      
+      if (storageAvailable('localStorage')) {
+        // Yippee! We can use localStorage awesomeness
+        populateStorage();
+      }
     });
   }
 
