@@ -1,5 +1,5 @@
-import Project from './project.js';
 import {projects, home} from './index.js';
+import Project from './project.js';
 
 const localStorageManipulation = (() => {
   // Detects whether localStorage is both supported and available (from MDN Web Docs)

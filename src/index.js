@@ -1,17 +1,17 @@
 import './normalize.css';
 import './style.scss';
 import Project from './project.js';
-import listDOM from './list-dom.js';
 import localStorageManipulation from './local-storage';
+import listDOM from './list-dom.js';
 
 const ToDo = (description, dueDate, priority = 'normal', complete = false) => {
   return {description, dueDate, priority, complete};
 }
 
-const projects = [];
-
-// Home
+// Default project
 const home = Project('Home');
+
+const projects = [];
 
 localStorageManipulation.retrieve();
 
@@ -76,7 +76,7 @@ const setProjectEvents = () => {
       project.classList.add('li_active');
       listDOM.clearDisplay();
       listDOM.displayList(projects[project.getAttribute('data-index')]);
-      let addToDoButton = document.querySelector('.to-do-form__button');
+      let addToDoButton = document.querySelector('.to-do-form__btn');
       let addToDoButtonNew = addToDoButton.cloneNode(true);
       addToDoButton.parentNode.replaceChild(addToDoButtonNew, addToDoButton);
       listDOM.setAddToDo(projects[project.getAttribute('data-index')]);
@@ -92,7 +92,7 @@ const setHomeEvent = () => {
     homeLi.classList.add('li_active');
     listDOM.clearDisplay();
     listDOM.displayList(home);
-    let addToDoButton = document.querySelector('.to-do-form__button');
+    let addToDoButton = document.querySelector('.to-do-form__btn');
     let addToDoButtonNew = addToDoButton.cloneNode(true);
     addToDoButton.parentNode.replaceChild(addToDoButtonNew, addToDoButton);
     listDOM.setAddToDo(home);
@@ -128,4 +128,4 @@ setHomeEvent();
 setProjectEvents();
 
 export default ToDo;
-export {projects, home};
+export {home, projects};

@@ -1,6 +1,5 @@
 import moment from 'moment';
 import ToDo from './index.js';
-import Project from './project.js';
 import localStorageManipulation from './local-storage.js';
 
 const listDOM = (() => {
@@ -8,6 +7,13 @@ const listDOM = (() => {
     let description = document.querySelector('#description');
     let date = document.querySelector('#due-date');
     return ToDo(description.value, date.value);
+  }
+
+  const resetInputs = () => {
+    let inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+      input.value = '';
+    });
   }
 
   const displayList = (project) => {
@@ -86,25 +92,21 @@ const listDOM = (() => {
     });
   }
 
-  const resetInputs = () => {
-    let inputs = document.querySelectorAll('input');
-    inputs.forEach(input => {
-      input.value = '';
-    });
+  const updateList = (project) => {
+    clearDisplay();
+    displayList(project);
+    setToDoEvents(project);
+    localStorageManipulation.handlePopulation();
   }
 
   const setAddToDo = (project) => {
-    let addToDoButton = document.querySelector('.to-do-form__button');
-    addToDoButton.addEventListener('click', () => {
+    let addToDoBtn = document.querySelector('.to-do-form__btn');
+    addToDoBtn.addEventListener('click', () => {
       let description = document.querySelector('#description');
       if (description.value === '') return;
       project.appendToDo(createToDo());
-      console.log(project.list);
       resetInputs();
-      clearDisplay();
-      displayList(project);
-      setToDoEvents(project);
-      localStorageManipulation.handlePopulation();
+      updateList(project);
     });
   }
 
@@ -116,30 +118,24 @@ const listDOM = (() => {
       let checkbox = item.querySelector('.to-do__checkbox input');
       checkbox.addEventListener('click', () => {
         project.changeCompleteStatus(i);
-        clearDisplay();
-        displayList(project);
-        setToDoEvents(project);
+        updateList(project);
       });
   
       let deleteIcon = item.querySelector('.fa-trash');
       deleteIcon.addEventListener('click', () => {
         project.removeToDo(i);
-        clearDisplay();
-        displayList(project);
-        setToDoEvents(project);
+        updateList(project);
       });
   
       let priorityIcon = item.querySelector('.fa-triangle-exclamation');
       priorityIcon.addEventListener('click', ()=> {
         project.changePriority(i);
-        clearDisplay();
-        displayList(project);
-        setToDoEvents(project);
+        updateList(project);
       });
     });
   }
 
-  return {displayList, clearDisplay, setAddToDo, setToDoEvents, resetInputs};
+  return {displayList, clearDisplay, resetInputs, setAddToDo, setToDoEvents, updateList};
 })();
 
 export default listDOM;
