@@ -114,7 +114,7 @@ const projectDOM = (() => {
 
   const setAddProject = () => {
     let projectInput = document.querySelector('#name');
-    let addProjectBtn = document.querySelector('.sidebar__li .fa-plus');
+    let addProjectBtn = document.querySelector('.project-form__btn');
     addProjectBtn.addEventListener('click', () => {
       if (projectInput.value === '') return;
 
@@ -126,7 +126,7 @@ const projectDOM = (() => {
       listDOM.resetInputs();
       projects.push(Project(projectName));
       resetProjectDisplay();
-      
+
       removeActiveClass();
       let newProject = document.querySelector('.project-form').previousElementSibling;
       newProject.classList.add('li_active');

@@ -154,13 +154,9 @@ ul i {
 .project-form {
   height: 53px;
   padding-right: 1.5vw;
+
   label {
     display: none;
-  }
-
-  i {
-    opacity: 1;
-    color: $accent-color;
   }
 }
 
@@ -170,6 +166,29 @@ ul i {
     max-width: 9vw;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+}
+
+.project-form__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border: none;
+  background: white;
+
+  i {
+    opacity: 1;
+    color: $accent-color;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    opacity: 0.8;
   }
 }
 
