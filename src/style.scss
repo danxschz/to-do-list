@@ -161,12 +161,34 @@ ul i {
 }
 
 .project {
-  padding-right: 0;
+  padding-right: 1.5vw;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  align-items: center;
   div {
     max-width: 9vw;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  .fa-xmark {
+    align-self: end;
+    color: $accent-color;
+    transition: opacity 0.3s;
+    opacity: 0.3;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.project__left {
+  display: grid;
+  grid-template-columns: 20px auto;
+  align-items: center;
+  justify-content: start;
+  gap: 16px;
 }
 
 .project-form__btn {

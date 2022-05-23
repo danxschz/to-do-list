@@ -26,6 +26,7 @@ projectDOM.toggleDropdown();
 projectDOM.displayProjects();
 projectDOM.setHomeEvent();
 projectDOM.setProjectEvents();
+projectDOM.setRemoveProject();
 projectDOM.setAddProject();
 
 export default ToDo;

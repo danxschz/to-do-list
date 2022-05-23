@@ -34,13 +34,25 @@ const projectDOM = (() => {
       listItem.setAttribute('class', 'sidebar__li project');
       listItem.setAttribute('data-index', i++);
 
-      let icon = document.createElement('i');
-      icon.setAttribute('class', 'fa-solid fa-folder');
-      listItem.appendChild(icon);
+      let leftSection = document.createElement('div');
+      leftSection.classList.add('project__left');
+
+      let folderIcon = document.createElement('i');
+      folderIcon.setAttribute('class', 'fa-solid fa-folder');
+      leftSection.appendChild(folderIcon);
 
       let projectName = document.createElement('div');
       projectName.textContent = project.name;
-      listItem.appendChild(projectName);
+      leftSection.appendChild(projectName);
+
+      listItem.appendChild(leftSection);
+
+      let deleteIcon = document.createElement('i');
+      deleteIcon.setAttribute('class', 'fa-solid fa-xmark');
+      // Avoid activating parent element click event (Prevent bubbling)
+      deleteIcon.setAttribute('onclick', 'event.stopPropagation();');
+      deleteIcon.setAttribute('title', 'Double click to remove project');
+      listItem.appendChild(deleteIcon);
 
       dropdown.insertBefore(listItem, form);
     }
@@ -93,6 +105,7 @@ const projectDOM = (() => {
     clearProjects();
     displayProjects();
     setProjectEvents();
+    setRemoveProject();
   }
 
   const setAddProject = () => {
@@ -119,7 +132,21 @@ const projectDOM = (() => {
     });
   }
 
-  return {toggleDropdown, displayProjects, setHomeEvent, setProjectEvents, setAddProject};
+  const setRemoveProject = () => {
+    let sidebarProjects = document.querySelectorAll('.project');
+    sidebarProjects.forEach(project => {
+      let i = project.getAttribute('data-index');
+      let deleteIcon = project.querySelector('.fa-xmark');
+      deleteIcon.addEventListener('dblclick', () => {
+        localStorage.removeItem(projects[i].name);
+        projects.splice(i, 1);
+        resetProjectDisplay();
+        switchProject(home);
+      });
+    });
+  }
+
+  return {toggleDropdown, displayProjects, setHomeEvent, setProjectEvents, setAddProject, setRemoveProject};
 })();
 
 export default projectDOM;
