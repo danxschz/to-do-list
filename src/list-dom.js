@@ -135,7 +135,7 @@ const listDOM = (() => {
     });
   }
 
-  return {displayList, clearDisplay, resetInputs, setAddToDo, setToDoEvents, updateList};
+  return {displayList, clearDisplay, resetInputs, setAddToDo, setToDoEvents};
 })();
 
 export default listDOM;

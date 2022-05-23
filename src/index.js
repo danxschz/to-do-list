@@ -126,6 +126,11 @@ const projectDOM = (() => {
       listDOM.resetInputs();
       projects.push(Project(projectName));
       resetProjectDisplay();
+      
+      removeActiveClass();
+      let newProject = document.querySelector('.project-form').previousElementSibling;
+      newProject.classList.add('li_active');
+
       switchProject(projects[projects.length-1]);
       localStorageManipulation.handlePopulation();
     });
