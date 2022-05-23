@@ -1,4 +1,4 @@
-import {projects, home} from './index.js';
+import {home, projects} from './index.js';
 import Project from './project.js';
 
 const localStorageManipulation = (() => {
