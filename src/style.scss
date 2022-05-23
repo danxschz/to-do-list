@@ -6,7 +6,6 @@
 $primary-color: #f7f8fa;
 $accent-color: #643fdb;
 $text-color: #01002d;
-$important-color: #ff2b00; 
 $system-font-stack: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
 
 
@@ -78,19 +77,20 @@ body {
   transition: color 0.3s;
   cursor: pointer;
 
+  i {
+    justify-self: center;
+    opacity: 0.4;
+  }
+
   &:hover {
     background: rgba(100, 63, 219, 0.2);
   }
 }
 
-ul i {
-  justify-self: center;
-  opacity: 0.4;
-}
 .sidebar__li {
   grid-template-columns: 20px auto;
   justify-content: start;
-  padding: 16px 6vw 16px 1.5vw;
+  padding: 16px 7vw 16px 1.5vw;
 }
 
 .dropdown-btn {
@@ -99,13 +99,9 @@ ul i {
   padding: 16px 1.5vw;
   border: none;
   background: white;
-
-  .fa-caret-down {
-    justify-self: end;
-  }
 }
 
-.dropdown-btn__left {
+.dropdown-btn__left, .project__left {
   display: grid;
   grid-template-columns: 20px auto;
   align-items: center;
@@ -136,37 +132,13 @@ ul i {
   }
 }
 
-.sidebar > a {
-  align-self: end;
-  justify-self: center;
-}
-
-.fa-github {
-  font-size: 2.2rem;
-  transition: transform 0.3s ease-in-out;
-}
-  
-.fa-github:hover {
-  transform: rotate(360deg) scale(1.2);
-}
-
-// Project form
-.project-form {
-  height: 53px;
-  padding-right: 1.5vw;
-
-  label {
-    display: none;
-  }
-}
-
 .project {
-  padding-right: 1.5vw;
   grid-template-columns: auto auto;
   justify-content: space-between;
-  align-items: center;
+  padding-right: 1.5vw;
+
   div {
-    max-width: 9vw;
+    max-width: 9.5vw;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -174,8 +146,8 @@ ul i {
   .fa-xmark {
     align-self: end;
     color: $accent-color;
-    transition: opacity 0.3s;
     opacity: 0.3;
+    transition: opacity 0.3s;
 
     &:hover {
       opacity: 1;
@@ -183,12 +155,17 @@ ul i {
   }
 }
 
-.project__left {
-  display: grid;
-  grid-template-columns: 20px auto;
-  align-items: center;
-  justify-content: start;
-  gap: 16px;
+.project-form {
+  height: 53px;
+  padding-right: 1.5vw;
+
+  label {
+    display: none;
+  }
+
+  &:hover button {
+    background: #efebfb;
+  }
 }
 
 .project-form__btn {
@@ -204,25 +181,31 @@ ul i {
     opacity: 1;
     color: $accent-color;
   }
-
-  &:hover {
-    opacity: 0.9;
-  }
-
-  &:active {
-    opacity: 0.8;
-  }
 }
 
 #name {
-  border-radius: 4px;
-  background: white;
-  font-size: 1rem;
   height: 100%;
   width: 8vw;
   border: none;
+  border-radius: 4px;
+  background: white;
+  font-size: 1rem;
   font-weight: 600;
   outline-color: $accent-color;
+}
+
+.sidebar > a {
+  align-self: end;
+  justify-self: center;
+}
+
+.fa-github {
+  font-size: 2.2rem;
+  transition: transform 0.3s ease-in-out;
+}
+  
+.fa-github:hover {
+  transform: rotate(360deg) scale(1.2);
 }
 
 
