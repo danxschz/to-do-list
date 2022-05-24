@@ -18,15 +18,20 @@ const Project = (name) => {
   };
 
   const changePriority = (i) => {
-    if (list[i].priority === 'normal') {
-      list[i].priority = 'important';
+    if (list[i].priority === "normal") {
+      list[i].priority = "important";
     } else {
-      list[i].priority = 'normal';
+      list[i].priority = "normal";
     }
   };
 
   return {
-    name, list, appendToDo, removeToDo, changeCompleteStatus, changePriority,
+    name,
+    list,
+    appendToDo,
+    removeToDo,
+    changeCompleteStatus,
+    changePriority,
   };
 };
 

@@ -1,51 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/92d46d99be.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>To x Do</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://kit.fontawesome.com/92d46d99be.js" crossorigin="anonymous"></script>
-  <title>To x Do</title>
-</head>
-
-<body>
-  <div class="sidebar">
-    <div class="logo"><a href="">To x Do</a></div>
-    <ul>
-      <li class="sidebar__li home"><i class="fa-solid fa-house-user"></i>Home</li>
-      <button class="dropdown-btn">
-        <div class="dropdown-btn__left"><i class="fa-solid fa-folder-tree"></i>Projects</div>
-        <i class="fa-solid fa-caret-down"></i>
-      </button>
-      <div class="dropdown">
-        <li class="sidebar__li project-form">
-          <button class="project-form__btn"><i class="fa-solid fa-plus"></i></button>
-          <div>
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" placeholder="New project">
-          </div>
+  <body>
+    <div class="sidebar">
+      <div class="logo"><a href="">To x Do</a></div>
+      <ul>
+        <li class="sidebar__li home">
+          <i class="fa-solid fa-house-user"></i>Home
         </li>
-      </div>
-    </ul>
-    <a href="https://github.com/danxschz" target="_blank"><i class="fa-brands fa-github"></i></a>
-  </div>
+        <button class="dropdown-btn">
+          <div class="dropdown-btn__left">
+            <i class="fa-solid fa-folder-tree"></i>Projects
+          </div>
+          <i class="fa-solid fa-caret-down"></i>
+        </button>
+        <div class="dropdown">
+          <li class="sidebar__li project-form">
+            <button class="project-form__btn">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+            <div>
+              <label for="name">Name</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="New project"
+              />
+            </div>
+          </li>
+        </div>
+      </ul>
+      <a href="https://github.com/danxschz" target="_blank"
+        ><i class="fa-brands fa-github"></i
+      ></a>
+    </div>
 
-  <main>
-    <h1></h1>
-    <div class="content">
-      <div class="list"></div>
-      <div class="to-do-form">
-        <button class="to-do-form__btn"><i class="fa-solid fa-plus"></i></button>
-        <div class="to-do-form__inputs">
-          <label for="description">Description</label>
-          <input type="text" name="description" id="description" placeholder="Add to do">
-          <label for="date">Due date</label>
-          <input type="date" name="due-date" id="due-date">
+    <main>
+      <h1></h1>
+      <div class="content">
+        <div class="list"></div>
+        <div class="to-do-form">
+          <button class="to-do-form__btn">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+          <div class="to-do-form__inputs">
+            <label for="description">Description</label>
+            <input
+              type="text"
+              name="description"
+              id="description"
+              placeholder="Add to do"
+            />
+            <label for="date">Due date</label>
+            <input type="date" name="due-date" id="due-date" />
+          </div>
         </div>
       </div>
-    </div>
-  </main>
-</body>
-
+    </main>
+  </body>
 </html>

@@ -1,13 +1,12 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap");
 
 // Variables
 $primary-color: #f7f8fa;
 $accent-color: #643fdb;
 $text-color: #01002d;
-$system-font-stack: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
-
+$system-font-stack: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+  segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
 
 // General rules
 *,
@@ -17,11 +16,12 @@ $system-font-stack: -apple-system, BlinkMacSystemFont, avenir next, avenir, sego
 }
 
 body {
-  font-family: 'Mulish', $system-font-stack;
+  font-family: "Mulish", $system-font-stack;
   color: $text-color;
 }
 
-h1, ul {
+h1,
+ul {
   margin: 0;
   padding: 0;
 }
@@ -34,14 +34,12 @@ button {
   cursor: pointer;
 }
 
-
 // Main grid
 body {
   display: grid;
   grid-template-columns: auto 1fr;
   min-height: 100vh;
 }
-
 
 // Sidebar
 .sidebar {
@@ -69,7 +67,8 @@ body {
   font-weight: 700;
 }
 
-.sidebar__li, .dropdown-btn {
+.sidebar__li,
+.dropdown-btn {
   display: grid;
   align-items: center;
   gap: 16px;
@@ -101,7 +100,8 @@ body {
   background: white;
 }
 
-.dropdown-btn__left, .project__left {
+.dropdown-btn__left,
+.project__left {
   display: grid;
   grid-template-columns: 20px auto;
   align-items: center;
@@ -109,7 +109,8 @@ body {
   gap: 16px;
 }
 
-.li_active, .dropdown-btn_active {
+.li_active,
+.dropdown-btn_active {
   color: $accent-color;
   font-weight: 600;
 
@@ -203,11 +204,10 @@ body {
   font-size: 2.2rem;
   transition: transform 0.3s ease-in-out;
 }
-  
+
 .fa-github:hover {
   transform: rotate(360deg) scale(1.2);
 }
-
 
 // Main
 main {
@@ -229,7 +229,6 @@ h1 {
   gap: 10px;
 }
 
-
 // List
 .list {
   display: grid;
@@ -244,7 +243,8 @@ h1 {
   font-size: 1.1rem;
 }
 
-.to-do__checkbox, .to-do__content {
+.to-do__checkbox,
+.to-do__content {
   display: grid;
   padding: 16px;
   border-radius: 4px;
@@ -308,7 +308,6 @@ h1 {
   opacity: 0.6;
 }
 
-
 // To do form
 .to-do-form {
   display: grid;
@@ -353,7 +352,8 @@ h1 {
   font-size: 1.1rem;
 }
 
-#description, #due-date {
+#description,
+#due-date {
   height: 100%;
   padding: 16px;
   border: none;
