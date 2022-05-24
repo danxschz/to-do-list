@@ -97,8 +97,7 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-# dist will be commented out to deploy on github pages
-dist 
+#dist 
 
 # Gatsby files
 .cache/
