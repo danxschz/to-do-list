@@ -1,11 +1,11 @@
-import "./normalize.css";
-import "./style.scss";
-import Project from "./project";
-import localStorageManipulation from "./local-storage";
-import listDOM from "./list-dom";
-import projectDOM from "./project-dom";
+import './normalize.css';
+import './style.scss';
+import Project from './project';
+import localStorageManipulation from './local-storage';
+import listDOM from './list-dom';
+import projectDOM from './project-dom';
 
-const ToDo = (description, dueDate, priority = "normal", complete = false) => ({
+const ToDo = (description, dueDate, priority = 'normal', complete = false) => ({
   description,
   dueDate,
   priority,
@@ -13,7 +13,7 @@ const ToDo = (description, dueDate, priority = "normal", complete = false) => ({
 });
 
 // Default project
-const home = Project("Home");
+const home = Project('Home');
 
 const projects = [];
 
