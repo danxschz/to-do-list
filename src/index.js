@@ -1,13 +1,13 @@
 import './normalize.css';
 import './style.scss';
-import Project from './project.js';
+import Project from './project';
 import localStorageManipulation from './local-storage';
-import listDOM from './list-dom.js';
-import projectDOM from './project-dom.js';
+import listDOM from './list-dom';
+import projectDOM from './project-dom';
 
-const ToDo = (description, dueDate, priority = 'normal', complete = false) => {
-  return {description, dueDate, priority, complete};
-}
+const ToDo = (description, dueDate, priority = 'normal', complete = false) => ({
+  description, dueDate, priority, complete,
+});
 
 // Default project
 const home = Project('Home');
@@ -30,4 +30,4 @@ projectDOM.setRemoveProject();
 projectDOM.setAddProject();
 
 export default ToDo;
-export {home, projects};
+export { home, projects };

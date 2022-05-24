@@ -3,11 +3,11 @@ const Project = (name) => {
 
   const appendToDo = (toDo) => {
     list.push(toDo);
-  }
+  };
 
   const removeToDo = (i) => {
     list.splice(i, 1);
-  }
+  };
 
   const changeCompleteStatus = (i) => {
     if (list[i].complete === true) {
@@ -15,7 +15,7 @@ const Project = (name) => {
     } else {
       list[i].complete = true;
     }
-  }
+  };
 
   const changePriority = (i) => {
     if (list[i].priority === 'normal') {
@@ -23,9 +23,11 @@ const Project = (name) => {
     } else {
       list[i].priority = 'normal';
     }
-  }
+  };
 
-  return {name, list, appendToDo, removeToDo, changeCompleteStatus, changePriority};
-}
+  return {
+    name, list, appendToDo, removeToDo, changeCompleteStatus, changePriority,
+  };
+};
 
 export default Project;

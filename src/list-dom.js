@@ -1,36 +1,36 @@
 import moment from 'moment';
-import ToDo from './index.js';
-import localStorageManipulation from './local-storage.js';
+import ToDo from './index';
+import localStorageManipulation from './local-storage';
 
 const listDOM = (() => {
   const createToDo = () => {
-    let description = document.querySelector('#description');
-    let date = document.querySelector('#due-date');
+    const description = document.querySelector('#description');
+    const date = document.querySelector('#due-date');
     return ToDo(description.value, date.value);
-  }
+  };
 
   const resetInputs = () => {
-    let inputs = document.querySelectorAll('input');
-    inputs.forEach(input => {
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach((input) => {
       input.value = '';
     });
-  }
+  };
 
   const displayList = (project) => {
-    let heading = document.querySelector('main h1');
+    const heading = document.querySelector('main h1');
     heading.textContent = project.name;
 
-    let list = document.querySelector('.list');
+    const list = document.querySelector('.list');
     let i = 0;
-    for (let item of project.list) {
-      let toDo = document.createElement('div');
+    for (const item of project.list) {
+      const toDo = document.createElement('div');
       toDo.classList.add('to-do');
       toDo.setAttribute('data-index', i++);
 
-      let checkboxDiv = document.createElement('div');
+      const checkboxDiv = document.createElement('div');
       checkboxDiv.classList.add('to-do__checkbox');
 
-      let checkbox = document.createElement('input');
+      const checkbox = document.createElement('input');
       checkbox.setAttribute('type', 'checkbox');
       if (item.complete === true) {
         checkbox.checked = true;
@@ -39,7 +39,7 @@ const listDOM = (() => {
       checkboxDiv.appendChild(checkbox);
       toDo.appendChild(checkboxDiv);
 
-      let contentDiv = document.createElement('div');
+      const contentDiv = document.createElement('div');
       contentDiv.classList.add('to-do__content');
 
       if (item.priority === 'important') {
@@ -47,12 +47,12 @@ const listDOM = (() => {
         contentDiv.classList.add('important');
       }
 
-      let description = document.createElement('div');
+      const description = document.createElement('div');
       description.classList.add('to-do__description');
       description.textContent = item.description;
       contentDiv.appendChild(description);
 
-      let date = document.createElement('div');
+      const date = document.createElement('div');
       date.classList.add('to-do__date');
       if (!(item.dueDate === '')) {
         date.textContent = moment(item.dueDate).calendar({
@@ -61,20 +61,20 @@ const listDOM = (() => {
           nextWeek: 'dddd',
           lastDay: '[Yesterday]',
           lastWeek: '[Last] dddd',
-          sameElse: 'DD/MM/YYYY'
+          sameElse: 'DD/MM/YYYY',
         });
       }
       contentDiv.appendChild(date);
 
-      let icons = document.createElement('div');
+      const icons = document.createElement('div');
       icons.classList.add('icons');
 
-      let priorityIcon = document.createElement('i');
+      const priorityIcon = document.createElement('i');
       priorityIcon.setAttribute('class', 'fa-solid fa-triangle-exclamation');
       priorityIcon.setAttribute('title', 'Change priority');
       icons.appendChild(priorityIcon);
 
-      let deleteIcon = document.createElement('i');
+      const deleteIcon = document.createElement('i');
       deleteIcon.setAttribute('class', 'fa-solid fa-trash');
       deleteIcon.setAttribute('title', 'Delete to do');
       icons.appendChild(deleteIcon);
@@ -83,59 +83,61 @@ const listDOM = (() => {
       toDo.appendChild(contentDiv);
       list.appendChild(toDo);
     }
-  }
+  };
 
   const clearDisplay = () => {
-    let listItems = document.querySelectorAll('.to-do');
+    const listItems = document.querySelectorAll('.to-do');
     listItems.forEach((item) => {
       item.remove();
     });
-  }
+  };
 
   const updateList = (project) => {
     clearDisplay();
     displayList(project);
     setToDoEvents(project);
     localStorageManipulation.handlePopulation();
-  }
+  };
 
   const setAddToDo = (project) => {
-    let addToDoBtn = document.querySelector('.to-do-form__btn');
+    const addToDoBtn = document.querySelector('.to-do-form__btn');
     addToDoBtn.addEventListener('click', () => {
-      let description = document.querySelector('#description');
+      const description = document.querySelector('#description');
       if (description.value === '') return;
       project.appendToDo(createToDo());
       resetInputs();
       updateList(project);
     });
-  }
+  };
 
   const setToDoEvents = (project) => {
-    let listItems = document.querySelectorAll('.to-do');
+    const listItems = document.querySelectorAll('.to-do');
     listItems.forEach((item) => {
-      let i = item.getAttribute('data-index');
-  
-      let checkbox = item.querySelector('.to-do__checkbox input');
+      const i = item.getAttribute('data-index');
+
+      const checkbox = item.querySelector('.to-do__checkbox input');
       checkbox.addEventListener('click', () => {
         project.changeCompleteStatus(i);
         updateList(project);
       });
-  
-      let deleteIcon = item.querySelector('.fa-trash');
+
+      const deleteIcon = item.querySelector('.fa-trash');
       deleteIcon.addEventListener('click', () => {
         project.removeToDo(i);
         updateList(project);
       });
-  
-      let priorityIcon = item.querySelector('.fa-triangle-exclamation');
-      priorityIcon.addEventListener('click', ()=> {
+
+      const priorityIcon = item.querySelector('.fa-triangle-exclamation');
+      priorityIcon.addEventListener('click', () => {
         project.changePriority(i);
         updateList(project);
       });
     });
-  }
+  };
 
-  return {displayList, clearDisplay, resetInputs, setAddToDo, setToDoEvents};
+  return {
+    displayList, clearDisplay, resetInputs, setAddToDo, setToDoEvents,
+  };
 })();
 
 export default listDOM;
