@@ -97,7 +97,8 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-#dist 
+dist
+# To cancel: git update-index --no-skip-worktree dist/ and git update-index --no-skip-worktree .dist/
 
 # Gatsby files
 .cache/
@@ -136,5 +137,3 @@ out
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-dist

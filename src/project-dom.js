@@ -1,6 +1,6 @@
-import { home, projects } from './index';
+import { home, projects } from './oldindex';
 import Project from './project';
-import localStorageManipulation from './local-storage';
+import populateLocalStorage from './populateLocalStorage';
 import listDOM from './list-dom';
 
 const projectDOM = (() => {
@@ -129,7 +129,7 @@ const projectDOM = (() => {
       newProject.classList.add('li_active');
 
       switchProject(projects[projects.length - 1]);
-      localStorageManipulation.handlePopulation();
+      populateLocalStorage(projects);
     });
   };
 

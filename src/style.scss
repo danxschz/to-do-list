@@ -224,7 +224,7 @@ h1 {
   cursor: default;
 }
 
-.content {
+main > div {
   display: grid;
   gap: 10px;
 }
@@ -309,7 +309,7 @@ h1 {
 }
 
 // To do form
-.to-do-form {
+.list-form {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 6px;
@@ -319,7 +319,7 @@ h1 {
   }
 }
 
-.to-do-form__btn {
+.list-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -343,7 +343,7 @@ h1 {
   }
 }
 
-.to-do-form__inputs {
+.list-form > div {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 0.5vw;
@@ -353,7 +353,7 @@ h1 {
 }
 
 #description,
-#due-date {
+#date {
   height: 100%;
   padding: 16px;
   border: none;
@@ -361,6 +361,6 @@ h1 {
   outline-color: $accent-color;
 }
 
-#due-date {
+#date {
   cursor: pointer;
 }

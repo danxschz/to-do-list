@@ -24,8 +24,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
-    "favicons": "^6.2.2",
-    "favicons-webpack-plugin": "^5.0.2",
+    "eslint-plugin-only-warn": "^1.0.3",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
@@ -37,6 +36,7 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
+    "generate-element": "^1.0.6",
     "moment": "^2.29.3"
   }
 }

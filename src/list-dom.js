@@ -1,6 +1,8 @@
-import moment from 'moment';
-import ToDo from './index';
-import localStorageManipulation from './local-storage';
+ /* eslint-disable */
+ import moment from 'moment';
+ import ToDo, { projects } from './oldindex';
+ import populateLocalStorage from './populateLocalStorage';
+ import { createToDo } from './projectLogic';
 
 const listDOM = (() => {
   const createToDo = () => {
@@ -96,7 +98,7 @@ const listDOM = (() => {
     clearDisplay();
     displayList(project);
     setToDoEvents(project);
-    localStorageManipulation.handlePopulation();
+    populateLocalStorage(projects);
   };
 
   const setAddToDo = (project) => {

@@ -1,72 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      src="https://kit.fontawesome.com/92d46d99be.js"
-      crossorigin="anonymous"
-    ></script>
-    <title>To x Do</title>
-  </head>
-
-  <body>
-    <div class="sidebar">
-      <div class="logo"><a href="">To x Do</a></div>
-      <ul>
-        <li class="sidebar__li home">
-          <i class="fa-solid fa-house-user"></i>Home
-        </li>
-        <button class="dropdown-btn">
-          <div class="dropdown-btn__left">
-            <i class="fa-solid fa-folder-tree"></i>Projects
-          </div>
-          <i class="fa-solid fa-caret-down"></i>
-        </button>
-        <div class="dropdown">
-          <li class="sidebar__li project-form">
-            <button class="project-form__btn">
-              <i class="fa-solid fa-plus"></i>
-            </button>
-            <div>
-              <label for="name">Name</label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="New project"
-              />
-            </div>
-          </li>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="To x Do. Keep track of tasks"/>
+  <!--
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="manifest" href="assets/favicon/site.webmanifest">
+  <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#ed3c20">
+  <meta name="msapplication-TileColor" content="#ed3c20">
+  <meta name="theme-color" content="#ffffff">
+  -->
+  <script
+    src="https://kit.fontawesome.com/92d46d99be.js"
+    crossorigin="anonymous"
+  ></script>
+  <title>To x Do</title>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo"><a href="">To x Do</a></div>
+    <ul>
+      <li class="sidebar__li home">
+        <i class="fa-solid fa-house-user"></i>Home
+      </li>
+      <button class="dropdown-btn">
+        <div class="dropdown-btn__left">
+          <i class="fa-solid fa-folder-tree"></i>Projects
         </div>
-      </ul>
-      <a href="https://github.com/danxschz" target="_blank"
-        ><i class="fa-brands fa-github"></i
-      ></a>
-    </div>
-
-    <main>
-      <h1></h1>
-      <div class="content">
-        <div class="list"></div>
-        <div class="to-do-form">
-          <button class="to-do-form__btn">
+        <i class="fa-solid fa-caret-down"></i>
+      </button>
+      <div class="dropdown">
+        <li class="sidebar__li project-form">
+          <button class="project-form__btn">
             <i class="fa-solid fa-plus"></i>
           </button>
-          <div class="to-do-form__inputs">
-            <label for="description">Description</label>
+          <div>
+            <label for="name">Name</label>
             <input
               type="text"
-              name="description"
-              id="description"
-              placeholder="Add to do"
+              name="name"
+              id="name"
+              placeholder="New project"
             />
-            <label for="date">Due date</label>
-            <input type="date" name="due-date" id="due-date" />
           </div>
-        </div>
+        </li>
       </div>
-    </main>
-  </body>
+    </ul>
+    <a href="https://github.com/danxschz" target="_blank"
+      ><i class="fa-brands fa-github"></i
+    ></a>
+  </div>
+  <main>
+    <h1>Home</h1>
+    <div>
+      <div class="list"></div>
+      <form class="list-form">
+        <button class="list-btn">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div>
+          <label for="description">Description</label>
+          <input type="text" id="description" placeholder="Add to do" />
+          <label for="date">Due date</label>
+          <input type="date" id="date" />
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
 </html>
