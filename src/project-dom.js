@@ -1,6 +1,6 @@
 import { home, projects } from './oldindex';
 import Project from './project';
-import populateLocalStorage from './populateLocalStorage';
+import populateLocalStorage from './oldstorage';
 import listDOM from './list-dom';
 
 const projectDOM = (() => {

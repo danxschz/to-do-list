@@ -1,7 +1,3 @@
- /* eslint-disable */
-import { home, projects } from './oldindex';
-import Project from './project';
-
 // Detects whether localStorage is both supported and available (from MDN Web Docs)
 const isAvailable = (type) => {
   let storage;
@@ -30,15 +26,15 @@ const isAvailable = (type) => {
   }
 };
 
-const populateLocalStorage = (projectsxd) => {
+const setLocalStorage = (projects) => {
   if (!isAvailable('localStorage')) return;
 
-  localStorage.setItem(home.name, JSON.stringify(home.list));
-  projectsxd.forEach((project) => {
+  projects.forEach((project) => {
     localStorage.setItem(project.name, JSON.stringify(project.list));
   });
 };
 
+/*
 const retrieveLocalStorage = () => {
   if (!isAvailable('localStorage') || !(localStorage.length > 0)) return;
 
@@ -55,6 +51,7 @@ const retrieveLocalStorage = () => {
     projects.push(retrievedProject);
   });
 };
+*/
 
-export default populateLocalStorage;
-export { retrieveLocalStorage };
+export default setLocalStorage;
+// export { retrieveLocalStorage };

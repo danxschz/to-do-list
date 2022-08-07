@@ -1,6 +1,7 @@
 import generateElement from 'generate-element';
 import moment from 'moment';
 import { ToDo } from './projectLogic';
+import setLocalStorage from './setLocalStorage';
 
 const dateFormat = {
   sameDay: '[Today]',
@@ -58,13 +59,14 @@ const clearList = () => {
   list.replaceChildren();
 };
 
-const updateList = (list) => {
+const updateList = (list, projects) => {
   clearList();
   setList(list);
   setToDoBtns(list);
+  setLocalStorage(projects);
 };
 
-const setToDoBtns = (list) => {
+const setToDoBtns = (list, projects) => {
   const toDos = document.querySelectorAll('.to-do');
   toDos.forEach((toDo) => {
     const i = toDo.getAttribute('data-index');
@@ -73,19 +75,19 @@ const setToDoBtns = (list) => {
     const checkbox = toDo.querySelector('.to-do input');
     checkbox.addEventListener('click', () => {
       list[i].status = !status;
-      updateList(list);
+      updateList(list, projects);
     });
 
     const priorityIcon = toDo.querySelector('.fa-triangle-exclamation');
     priorityIcon.addEventListener('click', () => {
       list[i].priority = !priority;
-      updateList(list);
+      updateList(list, projects);
     });
 
     const deleteIcon = toDo.querySelector('.fa-trash');
     deleteIcon.addEventListener('click', () => {
       list.splice(i, 1);
-      updateList(list);
+      updateList(list, projects);
     });
   });
 }
@@ -101,7 +103,7 @@ const resetInputs = () => {
   inputs.forEach((input) => input.value = '');
 };
 
-const setFormBtn = (project) => {
+const setFormBtn = (project, projects) => {
   const form = document.querySelector('.list-form');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -109,16 +111,16 @@ const setFormBtn = (project) => {
     if (description.value === '') return;
     project.list.push(createToDo());
     resetInputs();
-    updateList(project.list);
+    updateList(project.list, projects);
   });
 };
 
-const setProject = (project) => {
+const setProject = (project, projects) => {
   const heading = document.querySelector('h1');
   heading.textContent = project.name;
   setList(project.list);
-  setToDoBtns(project.list);
-  setFormBtn(project);
+  setToDoBtns(project.list, projects);
+  setFormBtn(project, projects);
 }
 
 export default setProject;

@@ -1,7 +1,7 @@
 import './normalize.css';
 import './style.scss';
 import Project from './project';
-import { retrieveLocalStorage } from './populateLocalStorage';
+import { retrieveLocalStorage } from './oldstorage';
 import listDOM from './list-dom';
 import projectDOM from './project-dom';
 import createProject, {createToDo} from './projectLogic';
