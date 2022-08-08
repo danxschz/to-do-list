@@ -7,12 +7,12 @@ const ToDo = (description, date, priority = false, status = false) => (
   }
 );
 
-const createProject = (name) => (
+const Project = (name) => (
   {
     name,
     list: [],
   }
 );
 
-export default createProject;
-export { ToDo };
+export default ToDo;
+export { Project };

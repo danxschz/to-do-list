@@ -1,6 +1,6 @@
 import generateElement from 'generate-element';
 import moment from 'moment';
-import { ToDo } from './projectLogic';
+import ToDo from './ToDo';
 import setLocalStorage from './setLocalStorage';
 
 const dateFormat = {
@@ -62,7 +62,7 @@ const clearList = () => {
 const updateList = (list, projects) => {
   clearList();
   setList(list);
-  setToDoBtns(list);
+  setToDoBtns(list, projects);
   setLocalStorage(projects);
 };
 
@@ -103,8 +103,16 @@ const resetInputs = () => {
   inputs.forEach((input) => input.value = '');
 };
 
-const setFormBtn = (project, projects) => {
+const clearListForm = () => {
   const form = document.querySelector('.list-form');
+  const formClone = form.cloneNode(true);
+  form.parentNode.replaceChild(formClone, form);
+};
+
+const setListForm = (project, projects) => {
+  clearListForm();
+  const form = document.querySelector('.list-form');
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const description = document.querySelector('#description');
@@ -118,9 +126,10 @@ const setFormBtn = (project, projects) => {
 const setProject = (project, projects) => {
   const heading = document.querySelector('h1');
   heading.textContent = project.name;
+  clearList();
   setList(project.list);
   setToDoBtns(project.list, projects);
-  setFormBtn(project, projects);
+  setListForm(project, projects);
 }
 
 export default setProject;
