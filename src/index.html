@@ -33,7 +33,7 @@
           <form class="nav-item project-form">
             <button class="project-btn" aria-label="Add project"><i class="fa-solid fa-plus"></i></button>
             <div>
-              <label for="name">Project name</label>
+              <label for="name" class="visually-hidden">Project name</label>
               <input type="text" id="name" placeholder="Add project" />
             </div>
           </form>
@@ -47,13 +47,13 @@
     <div>
       <div class="list"></div>
       <form class="list-form">
-        <button class="list-btn">
+        <button class="list-btn" aria-label="Add to do">
           <i class="fa-solid fa-plus"></i>
         </button>
         <div>
-          <label for="description">Description</label>
+          <label for="description" class="visually-hidden">To do description</label>
           <input type="text" id="description" placeholder="Add to do" />
-          <label for="date">Due date</label>
+          <label for="date" class="visually-hidden">Due date</label>
           <input type="date" id="date" />
         </div>
       </form>

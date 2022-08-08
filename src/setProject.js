@@ -1,3 +1,4 @@
+import './styles/project.scss';
 import generateElement from 'generate-element';
 import moment from 'moment';
 import ToDo from './ToDo';
@@ -12,14 +13,17 @@ const dateFormat = {
   sameElse: 'DD/MM/YYYY',
 }
 
-const setList = (list) => {
+const displayList = (list) => {
   const listDiv = document.querySelector('.list');
 
   list.forEach((item, i) => {
     const toDo = generateElement('div', 'to-do', false, { 'data-index': i });
 
     const checkboxDiv = generateElement('div', 'to-do__checkbox');
-    const checkbox = generateElement('input', false, false, { type: 'checkbox' });
+    const checkboxLabel = generateElement('label', 'visually-hidden', 'To do status', { for: `status-${i}` });
+    checkboxDiv.appendChild(checkboxLabel);
+
+    const checkbox = generateElement('input', false, false, { type: 'checkbox', id: `status-${i}` });
     if (item.status) {
       checkbox.checked = true;
       toDo.classList.add('complete');
@@ -33,22 +37,27 @@ const setList = (list) => {
       contentDiv.classList.add('important');
     }
 
-    const description = generateElement('div', 'to-do__description', item.description)
+    const description = generateElement('div', 'to-do__description', item.description, { title: item.description });
     contentDiv.appendChild(description);
 
-    const date = generateElement('div', 'to-do__date');
+    const buttons = generateElement('div', 'to-do__btns');
+    const date = generateElement('div');
     if (item.date) {
       date.textContent = moment(item.date).calendar(dateFormat);
+      buttons.appendChild(date);
     }
-    contentDiv.appendChild(date);
 
-    const icons = generateElement('div', 'icons');
-    const priorityIcon = generateElement('i', 'fa-solid fa-triangle-exclamation')
-    icons.appendChild(priorityIcon);
+    const priorityBtn = generateElement('button', 'priority-btn', false, { 'aria-label': 'Change priority' });
+    const priorityIcon = generateElement('i', 'fa-solid fa-triangle-exclamation');
+    priorityBtn.appendChild(priorityIcon);
+    buttons.appendChild(priorityBtn);
+
+    const deleteBtn = generateElement('button', 'delete-btn', false, { 'aria-label': 'Delete to do' });
     const deleteIcon = generateElement('i', 'fa-solid fa-trash');
-    icons.appendChild(deleteIcon);
+    deleteBtn.appendChild(deleteIcon);
+    buttons.appendChild(deleteBtn);
 
-    contentDiv.appendChild(icons);
+    contentDiv.appendChild(buttons);
     toDo.appendChild(contentDiv);
     listDiv.appendChild(toDo);
   });
@@ -59,14 +68,7 @@ const clearList = () => {
   list.replaceChildren();
 };
 
-const updateList = (list, projects) => {
-  clearList();
-  setList(list);
-  setToDoBtns(list, projects);
-  setLocalStorage(projects);
-};
-
-const setToDoBtns = (list, projects) => {
+const setListBtns = (list, projects) => {
   const toDos = document.querySelectorAll('.to-do');
   toDos.forEach((toDo) => {
     const i = toDo.getAttribute('data-index');
@@ -75,22 +77,29 @@ const setToDoBtns = (list, projects) => {
     const checkbox = toDo.querySelector('.to-do input');
     checkbox.addEventListener('click', () => {
       list[i].status = !status;
-      updateList(list, projects);
+      setList(list, projects);
     });
 
-    const priorityIcon = toDo.querySelector('.fa-triangle-exclamation');
-    priorityIcon.addEventListener('click', () => {
+    const priorityBtn = toDo.querySelector('.priority-btn');
+    priorityBtn.addEventListener('click', () => {
       list[i].priority = !priority;
-      updateList(list, projects);
+      setList(list, projects);
     });
 
-    const deleteIcon = toDo.querySelector('.fa-trash');
-    deleteIcon.addEventListener('click', () => {
+    const deleteBtn = toDo.querySelector('.delete-btn');
+    deleteBtn.addEventListener('click', () => {
       list.splice(i, 1);
-      updateList(list, projects);
+      setList(list, projects);
     });
   });
 }
+
+const setList = (list, projects) => {
+  clearList();
+  displayList(list);
+  setListBtns(list, projects);
+  setLocalStorage(projects);
+};
 
 const createToDo = () => {
   const description = document.querySelector('#description');
@@ -100,7 +109,7 @@ const createToDo = () => {
  
 const resetInputs = () => {
   const inputs = document.querySelectorAll('.list-form input');
-  inputs.forEach((input) => input.value = '');
+  inputs.forEach((input) => { input.value = '' });
 };
 
 const clearListForm = () => {
@@ -119,17 +128,17 @@ const setListForm = (project, projects) => {
     if (description.value === '') return;
     project.list.push(createToDo());
     resetInputs();
-    updateList(project.list, projects);
+    setList(project.list, projects);
   });
 };
 
 const setProject = (project, projects) => {
   const heading = document.querySelector('h1');
   heading.textContent = project.name;
-  clearList();
-  setList(project.list);
-  setToDoBtns(project.list, projects);
+  setList(project.list, projects)
   setListForm(project, projects);
+  const title = (project.name === 'Home') ? 'To x Do' : `${project.name} - To x Do`;
+  document.title = title;
 }
 
 export default setProject;

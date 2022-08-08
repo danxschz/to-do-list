@@ -1,0 +1,144 @@
+@import './shared';
+
+main {
+  @include flex-col(9vh, center);
+  padding-block: 1.5rem;
+  background: $clr-neutral-300;
+
+  > * {
+    width: min(90%, 1500px);
+    margin-inline: auto;
+  }
+
+  h1 {
+    text-align: center;
+    color: $clr-primary;
+  }
+
+  > div {
+    @include flex-col(10px);
+  }
+}
+
+.list {
+  @include flex-col(10px);
+}
+
+.to-do {
+  @include flex-row(6px);
+  font-size: 1.1rem;
+}
+
+.to-do__checkbox,
+.to-do__content {
+  padding: 1rem;
+  border-radius: 4px;
+  background: $clr-neutral-100;
+}
+
+.to-do__checkbox {
+  @include flex-row(null, center, center);
+}
+
+.to-do__checkbox input {
+  width: 25px;
+  height: 25px;
+  accent-color: $clr-primary;
+  cursor: pointer;
+}
+
+.to-do__content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1.1rem;
+  width: 100%;
+  font-weight: 600;
+}
+
+.to-do__description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.to-do__btns {
+  @include flex-row(1.1rem);
+
+  div {
+    margin-inline: 6px;
+  }
+
+  button {
+    border: none;
+    background: none;
+    color: $clr-primary;
+    font-size: 1.2rem;
+
+    &:hover i, &:focus i, &:active i {
+      opacity: 0.9;
+    }
+  }
+}
+
+.complete {
+  opacity: 0.6;
+}
+
+.important {
+  background: $clr-primary;
+  color: $clr-neutral-100;
+
+  input {
+    accent-color: $clr-neutral-100;
+  }
+  
+  i {
+    color: $clr-neutral-100;
+  }
+}
+
+.list-form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px;
+
+  div {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    width: 100%;
+    gap: 0.5rem;
+    padding: 4px;
+    border-radius: 4px;
+    background: $clr-neutral-100;
+    font-size: 1.1rem;
+  }
+}
+
+.list-btn {
+  @include flex-row(null, center, center);
+  height: 57px;
+  width: 57px;
+  border: none;
+  border-radius: 4px;
+  background: $clr-primary;
+  color: $clr-neutral-100;
+  font-size: 2rem;
+
+  &:hover, &:focus, &:active {
+    opacity: 0.9;
+  }
+}
+
+#description,
+#date {
+  padding-inline: 12px; 
+  border: none;
+  font-weight: 600;
+  outline-color: $clr-primary;
+}
+
+#date {
+  min-width: 46px;
+  cursor: pointer;
+}
