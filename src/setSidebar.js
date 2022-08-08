@@ -1,29 +1,37 @@
 import generateElement from 'generate-element';
-import { Project } from './ToDo';
 import setProject from './setProject';
+import { Project } from './ToDo';
 
 const removeSelectedStyle = () => {
-  const navItems = document.querySelectorAll('ul li');
+  const navItems = document.querySelectorAll('nav li');
   navItems.forEach((item) => {
-    item.classList.remove('li_active');
+    item.classList.remove('selected');
   });
 };
 
 const setSelectedStyle = (e) => {
   removeSelectedStyle();
-  e.currentTarget.classList.add('li_active');
+  e.currentTarget.classList.add('selected');
 }
 
-const setDropdown = () => {
+const setHomeBtn = (projects) => {
+  const home = document.querySelector('.home');
+  home.addEventListener('click', (e) => {
+    setSelectedStyle(e);
+    setProject(projects[0], projects);
+  });
+};
+
+const setDropdownBtn = () => {
   const dropdownBtn = document.querySelector('.dropdown-btn');
   dropdownBtn.addEventListener('click', () => {
-    dropdownBtn.classList.toggle('dropdown-btn_active');
+    dropdownBtn.classList.toggle('selected-btn');
     const dropdown = document.querySelector('.dropdown');
     dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
   });
 };
 
-const setProjects = (projects) => {
+const displayProjects = (projects) => {
   const dropdown = document.querySelector('.dropdown');
   const form = document.querySelector('.project-form');
 
@@ -31,13 +39,13 @@ const setProjects = (projects) => {
     if (project.name === 'Home') return;
 
     const listItem = generateElement('li', 'sidebar__li project', false, { 'data-index': i });
-    const leftSection = generateElement('div', 'project__left');
+    const nameDiv = generateElement('div');
     const folderIcon = generateElement('i', 'fa-solid fa-folder')
-    leftSection.appendChild(folderIcon);
+    nameDiv.appendChild(folderIcon);
 
-    const projectName = generateElement('div', false, project.name)
-    leftSection.appendChild(projectName);
-    listItem.appendChild(leftSection);
+    const name = generateElement('div', false, project.name)
+    nameDiv.appendChild(name);
+    listItem.appendChild(nameDiv);
 
     const deleteIcon = generateElement('i', 'fa-solid fa-xmark', false, { onclick: 'event.stopPropagation();' });
     listItem.appendChild(deleteIcon);
@@ -46,41 +54,35 @@ const setProjects = (projects) => {
   })
 };
 
+const setProjectBtns = (projects) => {
+  const projectBtns = document.querySelectorAll('.project');
+  projectBtns.forEach((btn) => {
+    const i = btn.getAttribute('data-index');
+    const deleteIcon = btn.querySelector('.fa-xmark');
+
+    btn.addEventListener('click', (e) => {
+      setSelectedStyle(e);
+      setProject(projects[i], projects);
+    });
+
+    deleteIcon.addEventListener('dblclick', () => {
+      projects.splice(i, 1);
+      updateProjects(projects);
+      setProject(projects[0], projects);
+      localStorage.removeItem(projects[i].name);
+    });
+  });
+};
+
 const clearProjects = () => {
   const projects = document.querySelectorAll('.project');
   projects.forEach((project) => project.remove());
 };
 
-const setProjectBtns = (projects) => {
-  const sidebarProjects = document.querySelectorAll('.project');
-  sidebarProjects.forEach((project) => {
-    project.addEventListener('click', (e) => {
-      const i = project.getAttribute('data-index');
-      setSelectedStyle(e);
-      setProject(projects[i], projects);
-    });
-  });
-};
-
-const setRemoveProject = (projects) => {
-  const sidebarProjects = document.querySelectorAll('.project');
-  sidebarProjects.forEach((project) => {
-    const i = project.getAttribute('data-index');
-    const deleteIcon = project.querySelector('.fa-xmark');
-    deleteIcon.addEventListener('dblclick', () => {
-      localStorage.removeItem(projects[i].name);
-      projects.splice(i, 1);
-      updateProjects(projects);
-      setProject(projects[0], projects);
-    });
-  });
-};
-
 const updateProjects = (projects) => {
   clearProjects();
-  setProjects(projects);
+  displayProjects(projects);
   setProjectBtns(projects);
-  setRemoveProject(projects);
 };
 
 const setProjectForm = (projects) => {
@@ -95,27 +97,16 @@ const setProjectForm = (projects) => {
     input.value = '';
     projects.push(Project(name));
     updateProjects(projects);
-    removeSelectedStyle();
     const newProject = document.querySelector('.project-form').previousElementSibling;
-    newProject.classList.add('li_active');
-    setProject(projects[projects.length - 1], projects);
+    newProject.click();
     // populateLocalStorage(projects);
-  });
-};
-
-const setHomeBtn = (projects) => {
-  const home = document.querySelector('.home');
-  home.addEventListener('click', (e) => {
-    setSelectedStyle(e);
-    setProject(projects[0], projects);
   });
 };
 
 const setSidebar = (projects) => {
   setHomeBtn(projects);
-  setDropdown();
-  setProjects(projects);
-  setProjectBtns(projects);
+  setDropdownBtn();
+  updateProjects(projects);
   setProjectForm(projects);
 }
 

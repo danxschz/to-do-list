@@ -101,7 +101,7 @@ body {
 }
 
 .dropdown-btn__left,
-.project__left {
+.project div {
   display: grid;
   grid-template-columns: 20px auto;
   align-items: center;
@@ -109,8 +109,8 @@ body {
   gap: 16px;
 }
 
-.li_active,
-.dropdown-btn_active {
+.selected,
+.selected-btn {
   color: $accent-color;
   font-weight: 600;
 
@@ -121,7 +121,7 @@ body {
   }
 }
 
-.dropdown-btn_active {
+.selected-btn {
   background: rgba(100, 63, 219, 0.2);
 }
 
