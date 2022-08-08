@@ -1,3 +1,4 @@
+import './styles/sidebar.scss';
 import generateElement from 'generate-element';
 import setProject from './setProject';
 import { Project } from './ToDo';
@@ -20,6 +21,12 @@ const setHomeBtn = (projects) => {
     setSelectedStyle(e);
     setProject(projects[0], projects);
   });
+
+  home.addEventListener('keypress', (e) => {
+    if (!(e.key === ' ') && !(e.key === 'Enter')) return;
+    setSelectedStyle(e);
+    setProject(projects[0], projects);
+  });
 };
 
 const setDropdownBtn = () => {
@@ -38,7 +45,7 @@ const displayProjects = (projects) => {
   projects.forEach((project, i) => {
     if (project.name === 'Home') return;
 
-    const listItem = generateElement('li', 'sidebar__li project', false, { 'data-index': i });
+    const listItem = generateElement('li', 'nav-item project', false, { 'data-index': i, tabindex: 0 });
     const nameDiv = generateElement('div');
     const folderIcon = generateElement('i', 'fa-solid fa-folder')
     nameDiv.appendChild(folderIcon);
@@ -47,8 +54,10 @@ const displayProjects = (projects) => {
     nameDiv.appendChild(name);
     listItem.appendChild(nameDiv);
 
-    const deleteIcon = generateElement('i', 'fa-solid fa-xmark', false, { onclick: 'event.stopPropagation();' });
-    listItem.appendChild(deleteIcon);
+    const deleteBtn = generateElement('button', false, false, { 'aria-label': 'Remove project' });
+    const deleteIcon = generateElement('i', 'fa-solid fa-xmark');
+    deleteBtn.appendChild(deleteIcon)
+    listItem.appendChild(deleteBtn);
 
     dropdown.insertBefore(listItem, form);
   })
@@ -58,14 +67,28 @@ const setProjectBtns = (projects) => {
   const projectBtns = document.querySelectorAll('.project');
   projectBtns.forEach((btn) => {
     const i = btn.getAttribute('data-index');
-    const deleteIcon = btn.querySelector('.fa-xmark');
+    const deleteButton = btn.querySelector('button');
 
     btn.addEventListener('click', (e) => {
       setSelectedStyle(e);
       setProject(projects[i], projects);
     });
 
-    deleteIcon.addEventListener('dblclick', () => {
+    btn.addEventListener('keypress', (e) => {
+      if (!(e.key === ' ') && !(e.key === 'Enter')) return;
+      setSelectedStyle(e);
+      setProject(projects[i], projects);
+    });
+
+    deleteButton.addEventListener('click', () => {
+      projects.splice(i, 1);
+      updateProjects(projects);
+      setProject(projects[0], projects);
+      localStorage.removeItem(projects[i].name);
+    });
+
+    deleteButton.addEventListener('keypress', () => {
+      if (!(e.key === ' ') && !(e.key === 'Enter')) return;
       projects.splice(i, 1);
       updateProjects(projects);
       setProject(projects[0], projects);
