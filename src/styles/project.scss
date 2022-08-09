@@ -155,7 +155,7 @@ main {
     padding-block: 1rem;
     gap: 5vh;
 
-    > * {
+    > div {
       width: min(94%, 1500px);
     }
   }
@@ -170,5 +170,9 @@ main {
 
   .to-do__btns {
     gap: 0.4rem;
+  }
+
+  #date {
+    width: 60px;
   }
 }

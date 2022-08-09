@@ -133,13 +133,14 @@ const setMobileNav = () => {
   });
 
   overlay.addEventListener('click', () => {
-    sidebar.style.width = 0;
+    sidebar.removeAttribute('style');
     overlay.style.opacity = 0;
     setTimeout(() => {overlay.style.height = 0}, 500);
   });
 
-  window.addEventListener('resize', () => {
+  screen.orientation.addEventListener('change', () => {
     sidebar.removeAttribute('style');
+    overlay.removeAttribute('style');
   });
 }
 
