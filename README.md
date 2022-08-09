@@ -1,9 +1,9 @@
 <div align="center">
   <img src="src/logo.png" alt="logo" width="200" height="auto">
-  <h1>To-Do List</h1>
+  <h1>To x Do: Task tracking app</h1>
 
   <p>
-  To-do list app to keep track of tasks with custom project folders
+  Keep track of tasks with custom project folders
   </p>
 
   <p>
@@ -29,6 +29,16 @@
 
 ## About the Project
 
+### Screenshots
+
+<div align="center">
+  <h3>Desktop</h3>
+  <img src="screenshots/desktop.jpg" alt="desktop page" width="600" height="auto"/>
+
+  <h3>Mobile</h3>
+  <img src="screenshots/mobile.png" alt="mobile page" width="600" height="auto"/>
+</div>
+
 ### Built With
 
 - HTML
@@ -37,14 +47,15 @@
 - Sass
 - npm
 - webpack
+- Web Storage API
 
 ### Color Reference
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Primary Color | #F7F8FA |
-| Accent Color | #643FDB |
-| Text Color | #01002D |
+| Background | #F7F8FA |
+| Primary | #643FDB |
+| Text | #01002D |
 
 ## Getting Started
 
@@ -73,7 +84,7 @@ Install dependencies
 ## Usage
 
 - Save to-do items to the default project (Home) or create a custom folder
-- View to-do details, delete and check off items
+- View to-do details, check off and delete items
 - Toggle priority between normal and important on to-do items
 - Data saved to local storage
 
@@ -83,4 +94,4 @@ Distributed under the MIT License. See LICENSE for more information.
 
 ## Contact
 
-Daniel Sanchez - danxschz@gmail.com
+Daniel Sanchez (@danxschz) - danxschz@gmail.com

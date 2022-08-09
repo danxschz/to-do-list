@@ -97,8 +97,7 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
-# To cancel: git update-index --no-skip-worktree dist/ and git update-index --no-skip-worktree .dist/
+#dist
 
 # Gatsby files
 .cache/
