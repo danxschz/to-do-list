@@ -1,6 +1,6 @@
 <div align="center">
-  <img src="src/logo.png" alt="logo" width="200" height="auto">
-  <h1>To x Do: Task tracking app</h1>
+  <img src="src/assets/logo.png" alt="logo" width="200" height="auto">
+  <h1>To x Do: Task Tracking App</h1>
 
   <p>
   Keep track of tasks with custom project folders
@@ -36,7 +36,7 @@
   <img src="screenshots/desktop.jpg" alt="desktop page" width="600" height="auto"/>
 
   <h3>Mobile</h3>
-  <img src="screenshots/mobile.png" alt="mobile page" width="600" height="auto"/>
+  <img src="screenshots/mobile.png" alt="mobile page" width="400" height="auto"/>
 </div>
 
 ### Built With
@@ -51,11 +51,11 @@
 
 ### Color Reference
 
-| Color             | Hex                                                                |
-| ----------------- | ------------------------------------------------------------------ |
+| Color      | Hex     |
+| :--------: | :-----: |
 | Background | #F7F8FA |
-| Primary | #643FDB |
-| Text | #01002D |
+| Primary    | #643FDB |
+| Text       | #01002D |
 
 ## Getting Started
 
