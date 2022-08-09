@@ -16,6 +16,7 @@
   <title>To x Do</title>
 </head>
 <body>
+  <div class="overlay"></div>
   <div class="sidebar">
     <a href="https://danxschz.github.io/to-do-list/" class="logo">To x Do</a>
     <nav>
@@ -41,8 +42,12 @@
     <a href="https://github.com/danxschz" target="_blank" rel="noreferrer" aria-label="Author's GitHub"><i class="fa-brands fa-github"></i></a>
   </div>
   <main>
-    <h1>Home</h1>
-    <div>
+    <div class="project-name">
+      <button class="nav-btn hidden" aria-hidden="true"><i class="fa-solid fa-bars"></i></button>
+      <h1>Home</h1>
+      <button class="nav-btn" id="nav-btn" aria-label="Open navigation"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="project-list">
       <div class="list"></div>
       <form class="list-form">
         <button class="list-btn" aria-label="Add to do">

@@ -5,19 +5,22 @@ main {
   padding-block: 1.5rem;
   background: $clr-neutral-300;
 
-  > * {
+  > div {
     width: min(90%, 1500px);
     margin-inline: auto;
   }
 
   h1 {
-    text-align: center;
     color: $clr-primary;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 75vw;
   }
+}
 
-  > div {
-    @include flex-col(10px);
-  }
+.project-list {
+  @include flex-col(10px);
 }
 
 .list {
@@ -63,7 +66,7 @@ main {
 }
 
 .to-do__btns {
-  @include flex-row(1.1rem);
+  @include flex-row(1.1rem, center);
 
   div {
     margin-inline: 6px;
@@ -138,7 +141,34 @@ main {
   outline-color: $clr-primary;
 }
 
+#description {
+  min-width: 110px;
+}
+
 #date {
   min-width: 46px;
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding-block: 1rem;
+    gap: 5vh;
+
+    > * {
+      width: min(94%, 1500px);
+    }
+  }
+
+  .project-name {
+    @include flex-row(10px, flex-end, space-between);
+  }
+
+  .to-do__content {
+    gap: 0.4rem;
+  }
+
+  .to-do__btns {
+    gap: 0.4rem;
+  }
 }

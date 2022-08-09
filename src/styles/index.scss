@@ -30,6 +30,10 @@ button {
   cursor: pointer;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 .visually-hidden {
   height: 0;
   width: 0;
@@ -42,4 +46,10 @@ body {
   display: grid;
   grid-template-columns: auto 1fr;
   min-height: 100vh;
+}
+
+@media (max-width: 600px) {
+  body {
+    grid-template-columns: 1fr;
+  }
 }

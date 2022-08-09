@@ -121,11 +121,34 @@ const setProjectForm = (projects) => {
   });
 };
 
+const setMobileNav = () => {
+  const navBtn = document.querySelector('#nav-btn');
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.querySelector('.overlay');
+
+  navBtn.addEventListener('click', () => {
+    sidebar.style.width = '75%';
+    overlay.style.height = 'auto';
+    overlay.style.opacity = 0.7;
+  });
+
+  overlay.addEventListener('click', () => {
+    sidebar.style.width = 0;
+    overlay.style.opacity = 0;
+    setTimeout(() => {overlay.style.height = 0}, 500);
+  });
+
+  window.addEventListener('resize', () => {
+    sidebar.removeAttribute('style');
+  });
+}
+
 const setSidebar = (projects) => {
   setHomeBtn(projects);
   setDropdownBtn();
   updateProjects(projects);
   setProjectForm(projects);
+  setMobileNav();
 }
 
 export default setSidebar;
