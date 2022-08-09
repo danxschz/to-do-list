@@ -68,7 +68,8 @@ const clearList = () => {
   list.replaceChildren();
 };
 
-const setListBtns = (list, projects) => {
+const setListBtns = (project) => {
+  const { list } = project
   const toDos = document.querySelectorAll('.to-do');
   toDos.forEach((toDo) => {
     const i = toDo.getAttribute('data-index');
@@ -77,28 +78,28 @@ const setListBtns = (list, projects) => {
     const checkbox = toDo.querySelector('.to-do input');
     checkbox.addEventListener('click', () => {
       list[i].status = !status;
-      setList(list, projects);
+      setList(project);
     });
 
     const priorityBtn = toDo.querySelector('.priority-btn');
     priorityBtn.addEventListener('click', () => {
       list[i].priority = !priority;
-      setList(list, projects);
+      setList(project);
     });
 
     const deleteBtn = toDo.querySelector('.delete-btn');
     deleteBtn.addEventListener('click', () => {
       list.splice(i, 1);
-      setList(list, projects);
+      setList(project);
     });
   });
 }
 
-const setList = (list, projects) => {
+const setList = (project) => {
   clearList();
-  displayList(list);
-  setListBtns(list, projects);
-  setLocalStorage(projects);
+  displayList(project.list);
+  setListBtns(project);
+  setLocalStorage(project);
 };
 
 const createToDo = () => {
@@ -118,7 +119,7 @@ const clearListForm = () => {
   form.parentNode.replaceChild(formClone, form);
 };
 
-const setListForm = (project, projects) => {
+const setListForm = (project) => {
   clearListForm();
   const form = document.querySelector('.list-form');
 
@@ -128,15 +129,15 @@ const setListForm = (project, projects) => {
     if (description.value === '') return;
     project.list.push(createToDo());
     resetInputs();
-    setList(project.list, projects);
+    setList(project);
   });
 };
 
-const setProject = (project, projects) => {
+const setProject = (project) => {
   const heading = document.querySelector('h1');
   heading.textContent = project.name;
-  setList(project.list, projects)
-  setListForm(project, projects);
+  setList(project)
+  setListForm(project);
   const title = (project.name === 'Home') ? 'To x Do' : `${project.name} - To x Do`;
   document.title = title;
 }

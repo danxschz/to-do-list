@@ -1,3 +1,5 @@
+import { Project } from "./ToDo";
+
 // Detects whether localStorage is both supported and available (from MDN Web Docs)
 const isAvailable = (type) => {
   let storage;
@@ -26,32 +28,25 @@ const isAvailable = (type) => {
   }
 };
 
-const setLocalStorage = (projects) => {
+const setLocalStorage = (project) => {
   if (!isAvailable('localStorage')) return;
-
-  projects.forEach((project) => {
-    localStorage.setItem(project.name, JSON.stringify(project.list));
-  });
+  localStorage.setItem(project.name, JSON.stringify(project.list));
 };
 
-/*
-const retrieveLocalStorage = () => {
+const getLocalStorage = (projects) => {
   if (!isAvailable('localStorage') || !(localStorage.length > 0)) return;
 
   const homeList = JSON.parse(localStorage.getItem('Home'));
-  homeList.forEach((toDo) => home.appendToDo(toDo))
-  console.log(localStorage);
+  projects[0].list = homeList;
 
-  // Retrieve projects
-  Object.keys(localStorage).forEach((project) => {
-    if (project === 'Home') return;
-    const retrievedProject = Project(project);
-    const retrievedProjectList = JSON.parse(localStorage.getItem(project));
-    retrievedProjectList.forEach((toDo) => retrievedProject.appendToDo(toDo));
-    projects.push(retrievedProject);
+  Object.keys(localStorage).forEach((key) => {
+    if (key === 'Home') return;
+
+    const project = Project(key);
+    project.list = JSON.parse(localStorage.getItem(key));
+    projects.push(project);
   });
 };
-*/
 
 export default setLocalStorage;
-// export { retrieveLocalStorage };
+export { getLocalStorage };

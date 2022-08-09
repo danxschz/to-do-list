@@ -2,6 +2,7 @@ import './styles/sidebar.scss';
 import generateElement from 'generate-element';
 import setProject from './setProject';
 import { Project } from './ToDo';
+import setLocalStorage from './setLocalStorage';
 
 const removeSelectedStyle = () => {
   const navItems = document.querySelectorAll('nav li');
@@ -19,13 +20,13 @@ const setHomeBtn = (projects) => {
   const home = document.querySelector('.home');
   home.addEventListener('click', (e) => {
     setSelectedStyle(e);
-    setProject(projects[0], projects);
+    setProject(projects[0]);
   });
 
   home.addEventListener('keypress', (e) => {
     if (!(e.key === ' ') && !(e.key === 'Enter')) return;
     setSelectedStyle(e);
-    setProject(projects[0], projects);
+    setProject(projects[0]);
   });
 };
 
@@ -71,28 +72,21 @@ const setProjectBtns = (projects) => {
 
     btn.addEventListener('click', (e) => {
       setSelectedStyle(e);
-      setProject(projects[i], projects);
+      setProject(projects[i]);
     });
 
     btn.addEventListener('keypress', (e) => {
       if (!(e.key === ' ') && !(e.key === 'Enter')) return;
       setSelectedStyle(e);
-      setProject(projects[i], projects);
+      setProject(projects[i]);
     });
 
-    deleteButton.addEventListener('click', () => {
+    deleteButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      localStorage.removeItem(projects[i].name);
       projects.splice(i, 1);
       updateProjects(projects);
-      setProject(projects[0], projects);
-      localStorage.removeItem(projects[i].name);
-    });
-
-    deleteButton.addEventListener('keypress', () => {
-      if (!(e.key === ' ') && !(e.key === 'Enter')) return;
-      projects.splice(i, 1);
-      updateProjects(projects);
-      setProject(projects[0], projects);
-      localStorage.removeItem(projects[i].name);
+      setProject(projects[0]);
     });
   });
 };
@@ -118,11 +112,12 @@ const setProjectForm = (projects) => {
 
     const name = (input <= 30) ? input.value : input.value.slice(0, 30);
     input.value = '';
-    projects.push(Project(name));
+    const newProject = Project(name);
+    projects.push(newProject);
+    setLocalStorage(newProject);
     updateProjects(projects);
-    const newProject = document.querySelector('.project-form').previousElementSibling;
-    newProject.click();
-    // populateLocalStorage(projects);
+    const newProjectBtn = document.querySelector('.project-form').previousElementSibling;
+    newProjectBtn.click();
   });
 };
 
