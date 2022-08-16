@@ -83,10 +83,9 @@ Install dependencies
 
 ## Usage
 
-- Save to-do items to the default project (Home) or create a custom folder
-- View to-do details, check off and delete items
-- Toggle priority between normal and important on to-do items
-- Data saved to local storage
+- Keep track of tasks on the home section or organize them by project
+- Prioritize, check off or delete items
+- Data stored in local storage
 
 ## License
 
